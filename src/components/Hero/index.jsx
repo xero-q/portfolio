@@ -1,7 +1,13 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import TypewriterText from "@/components/TypewriterText";
+import { useState } from "react";
 
-const Hero = () => {
+const Hero = ({ onDisplayed }) => {
+  const [showSecond, setShowSecond] = useState(false);
+
   return (
     <div className="flex flex-col items-center justify-center w-full mt-5">
       <Image
@@ -11,8 +17,20 @@ const Hero = () => {
         height={220}
         className="rounded-4xl shadow-2xs mb-2"
       />
-      <div className="text-2xl">Hi, I'm Aníbal Sánchez</div>
-      <div className="text-2xl">Software/ML Engineer</div>
+      <div className="text-2xl font-bold">
+        <TypewriterText
+          text="Hi, I'm Aníbal Sánchez"
+          onComplete={() => setShowSecond(true)}
+        />
+      </div>
+      <div className="text-2xl font-bold">
+        {showSecond && (
+          <TypewriterText
+            text="Software/ML Engineer"
+            onComplete={() => onDisplayed()}
+          />
+        )}
+      </div>
     </div>
   );
 };
