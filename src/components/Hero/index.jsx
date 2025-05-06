@@ -15,7 +15,7 @@ const Hero = ({ onDisplayed }) => {
         alt="Aníbal Sánchez"
         width={220}
         height={220}
-        className="rounded-4xl shadow-2xs mb-2"
+        className="rounded-4xl shadow-2xs mb-2 fade-in"
       />
       <div className="text-2xl font-bold">
         <TypewriterText
