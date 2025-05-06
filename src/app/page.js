@@ -1,7 +1,11 @@
+import Hero from "@/components/Hero";
+import AboutMe from "@/components/AboutMe";
+
 export default function Home() {
   return (
-    <div>
-      <h1>Portfolio - @xero-q</h1>
+    <div className="mx-auto flex flex-col justify-center w-full">
+      <Hero />
+      <AboutMe />
     </div>
   );
 }

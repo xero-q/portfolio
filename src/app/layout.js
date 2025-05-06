@@ -1,3 +1,5 @@
+import "./globals.css";
+
 export const metadata = {
   title: "Portfolio - Aníbal Sánchez Numa",
   description: "Personal website of Aníbal Sánchez Numa"
