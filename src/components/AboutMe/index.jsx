@@ -13,7 +13,8 @@ const AboutMe = () => {
         and Laravel. I have experience with these DBMS: PostgreSQL, MySQL,
         MongoDB, Redis, DynamoDB, SQLite and these Cloud providers: AWS and
         Google Cloud Platform. I also have experience with Machine Learning
-        using scikit-learn working on regression and classification tasks.{" "}
+        using scikit-learn and PyTorch working on regression and classification
+        tasks.{" "}
       </div>
     </div>
   );
