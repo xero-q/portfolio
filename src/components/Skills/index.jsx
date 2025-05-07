@@ -94,7 +94,7 @@ const Skills = () => {
     <div className="flex flex-col items-center justify-center w-full mt-5 fade-in">
       <h2 className="text-3xl font-bold mb-5">Skills</h2>
       <div className="flex flex-col mb-2">
-        <h3 className="text-2xl font-semibold mb-2 text-left">Frontend</h3>
+        <h3 className="skills-header">Frontend</h3>
         <div className="flex items-center flex-wrap">
           {skillsFrontend.map((skill) => (
             <SkillIcon key={skill.name} {...skill} />
@@ -102,7 +102,7 @@ const Skills = () => {
         </div>
       </div>
       <div className="flex flex-col mb-2">
-        <h3 className="text-2xl font-semibold mb-2 text-left">Backend</h3>
+        <h3 className="skills-header">Backend</h3>
         <div className="flex items-center flex-wrap">
           {skillsBackend.map((skill) => (
             <SkillIcon key={skill.name} {...skill} />
@@ -110,7 +110,7 @@ const Skills = () => {
         </div>
       </div>
       <div className="flex flex-col mb-2">
-        <h3 className="text-2xl font-semibold mb-2 text-left">DBMS</h3>
+        <h3 className="skills-header">DBMS</h3>
         <div className="flex items-center flex-wrap">
           {skillsDatabases.map((skill) => (
             <SkillIcon key={skill.name} {...skill} />
@@ -118,7 +118,7 @@ const Skills = () => {
         </div>
       </div>
       <div className="flex flex-col mb-2">
-        <h3 className="text-2xl font-semibold mb-2 text-left">DevOps</h3>
+        <h3 className="skills-header">DevOps</h3>
         <div className="flex items-center flex-wrap">
           {skillsDevOps.map((skill) => (
             <SkillIcon key={skill.name} {...skill} />
@@ -126,7 +126,7 @@ const Skills = () => {
         </div>
       </div>
       <div className="flex flex-col mb-2">
-        <h3 className="text-2xl font-semibold mb-2 text-left">Others</h3>
+        <h3 className="skills-header">Others</h3>
         <div className="flex items-center flex-wrap">
           {skillsOthers.map((skill) => (
             <SkillIcon key={skill.name} {...skill} />

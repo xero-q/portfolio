@@ -3,10 +3,19 @@
 import React from "react";
 import Image from "next/image";
 import TypewriterText from "@/components/TypewriterText";
+import Socials from "@/components/Socials";
 import { useState } from "react";
 
 const Hero = ({ onDisplayed }) => {
   const [showSecond, setShowSecond] = useState(false);
+  const [showSocials, setShowSocials] = useState(false);
+
+  const handleCompleteText = () => {
+    if (onDisplayed) {
+      onDisplayed();
+    }
+    setShowSocials(true);
+  };
 
   return (
     <div className="flex flex-col items-center justify-center w-full mt-5">
@@ -27,10 +36,11 @@ const Hero = ({ onDisplayed }) => {
         {showSecond && (
           <TypewriterText
             text="Senior Software Engineer"
-            onComplete={() => onDisplayed()}
+            onComplete={handleCompleteText}
           />
         )}
       </div>
+      {showSocials && <Socials />}
     </div>
   );
 };
