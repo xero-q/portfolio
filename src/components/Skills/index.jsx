@@ -71,7 +71,8 @@ const skillsDevOps = [
   },
   {
     name: "Google Cloud",
-    src: "/assets/logos/gcp.svg"
+    src: "/assets/logos/gcp.svg",
+    size: 90
   }
 ];
 
