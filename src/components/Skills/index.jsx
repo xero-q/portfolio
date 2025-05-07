@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import SkillIcon from "@/components/SkillIcon";
 
 const skillsFrontend = [
   {
@@ -72,19 +73,7 @@ const Skills = () => {
         <h3 className="text-2xl font-semibold mb-2 text-left">Frontend</h3>
         <div className="flex items-center flex-wrap">
           {skillsFrontend.map((skill) => (
-            <div className="flex items-center mr-2" key={skill.name}>
-              <Image
-                src={skill.src}
-                width={40}
-                height={40}
-                alt={skill.name}
-                className="object-contain opacity-0 translate-y-5 transition-all duration-700 ease-out"
-                onLoadingComplete={(img) => {
-                  img.classList.remove("opacity-0", "translate-y-5");
-                }}
-              />
-              <span className="skill-badge">{skill.name} </span>
-            </div>
+            <SkillIcon key={skill.name} {...skill} />
           ))}
         </div>
       </div>
@@ -92,19 +81,7 @@ const Skills = () => {
         <h3 className="text-2xl font-semibold mb-2 text-left">Backend</h3>
         <div className="flex items-center flex-wrap">
           {skillsBackend.map((skill) => (
-            <div className="flex items-center mr-2" key={skill.name}>
-              <Image
-                src={skill.src}
-                width={skill.size || 40}
-                height={skill.size || 40}
-                alt={skill.name}
-                className="object-contain opacity-0 translate-y-5 transition-all duration-700 ease-out"
-                onLoadingComplete={(img) => {
-                  img.classList.remove("opacity-0", "translate-y-5");
-                }}
-              />
-              <span className="skill-badge">{skill.name} </span>
-            </div>
+            <SkillIcon key={skill.name} {...skill} />
           ))}
         </div>
       </div>
@@ -112,19 +89,7 @@ const Skills = () => {
         <h3 className="text-2xl font-semibold mb-2 text-left">DBMS</h3>
         <div className="flex items-center flex-wrap">
           {skillsDatabases.map((skill) => (
-            <div className="flex items-center mr-2" key={skill.name}>
-              <Image
-                src={skill.src}
-                width={skill.size || 40}
-                height={skill.size || 40}
-                alt={skill.name}
-                className="object-contain opacity-0 translate-y-5 transition-all duration-700 ease-out"
-                onLoadingComplete={(img) => {
-                  img.classList.remove("opacity-0", "translate-y-5");
-                }}
-              />
-              <span className="skill-badge">{skill.name} </span>
-            </div>
+            <SkillIcon key={skill.name} {...skill} />
           ))}
         </div>
       </div>
