@@ -65,6 +65,17 @@ const skillsDatabases = [
   }
 ];
 
+const skillsDevOps = [
+  {
+    name: "AWS",
+    src: "/assets/logos/aws.svg"
+  },
+  {
+    name: "Google Cloud",
+    src: "/assets/logos/gcp.svg"
+  }
+];
+
 const Skills = () => {
   return (
     <div className="flex flex-col items-center justify-center w-full mt-5 fade-in">
@@ -89,6 +100,14 @@ const Skills = () => {
         <h3 className="text-2xl font-semibold mb-2 text-left">DBMS</h3>
         <div className="flex items-center flex-wrap">
           {skillsDatabases.map((skill) => (
+            <SkillIcon key={skill.name} {...skill} />
+          ))}
+        </div>
+      </div>
+      <div className="flex flex-col mb-2">
+        <h3 className="text-2xl font-semibold mb-2 text-left">DevOps</h3>
+        <div className="flex items-center flex-wrap">
+          {skillsDevOps.map((skill) => (
             <SkillIcon key={skill.name} {...skill} />
           ))}
         </div>

@@ -4,16 +4,18 @@ const AboutMe = () => {
   return (
     <div className="flex flex-col items-center justify-center w-full mt-5 fade-in">
       <div className="font-extrabold text-center md:max-w-[700px] lg:max-w-[900px]">
-        I graduated as Computer Engineer in 2012, and completed a Master in
-        Applied Informatics in 2013. I started working as a web developer and
-        professor of Mathematics and Statistics until 2019 when I started
-        working as a developer fulltime. I have developed software using: PHP,
-        .NET, JavaScript/TypeScript and Python using these libraries and
-        frameworks: Angular, React.js, Next.js, NestJS, Django, FastAPI, Yii2
-        and Laravel. I have experience with these DBMS: PostgreSQL, MySQL,
-        MongoDB, Redis, DynamoDB, SQLite and these Cloud providers: AWS and GCP.
-        I also have experience with Machine Learning using scikit-learn and
-        PyTorch working on regression and classification tasks.{" "}
+        I graduated with a degree in Computer Engineering in 2012 and completed
+        a Master’s in Applied Informatics in 2013. I began my career as a web
+        developer and as a professor of Mathematics and Statistics, roles I held
+        until 2019, when I transitioned to working full-time as a software
+        developer. I have developed software using PHP, .NET,
+        JavaScript/TypeScript, and Python, leveraging libraries and frameworks
+        such as Angular, React.js, Next.js, NestJS, ASP.NET, Django, FastAPI,
+        Yii2, and Laravel. I have experience with various database management
+        systems, including PostgreSQL, MySQL, MongoDB, Redis, DynamoDB, and
+        SQLite, as well as cloud providers like AWS and Google Cloud.
+        Additionally, I have experience in Machine Learning using scikit-learn
+        and PyTorch, working on regression and classification tasks..{" "}
       </div>
     </div>
   );
