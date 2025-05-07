@@ -75,6 +75,19 @@ const skillsDevOps = [
   }
 ];
 
+const skillsOthers = [
+  {
+    name: "Git",
+    src: "/assets/logos/git.svg",
+    size: 50
+  },
+  {
+    name: "Docker",
+    src: "/assets/logos/docker.svg",
+    size: 70
+  }
+];
+
 const Skills = () => {
   return (
     <div className="flex flex-col items-center justify-center w-full mt-5 fade-in">
@@ -107,6 +120,14 @@ const Skills = () => {
         <h3 className="text-2xl font-semibold mb-2 text-left">DevOps</h3>
         <div className="flex items-center flex-wrap">
           {skillsDevOps.map((skill) => (
+            <SkillIcon key={skill.name} {...skill} />
+          ))}
+        </div>
+      </div>
+      <div className="flex flex-col mb-2">
+        <h3 className="text-2xl font-semibold mb-2 text-left">Others</h3>
+        <div className="flex items-center flex-wrap">
+          {skillsOthers.map((skill) => (
             <SkillIcon key={skill.name} {...skill} />
           ))}
         </div>
