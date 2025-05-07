@@ -2,7 +2,7 @@ import React from "react";
 
 const AboutMe = () => {
   return (
-    <div className="flex flex-col items-center justify-center w-full mt-5 fade-in">
+    <div className="flex flex-col items-center justify-center w-full fade-in">
       <div className="font-extrabold text-center md:max-w-[700px] lg:max-w-[900px]">
         I graduated with a degree in Computer Engineering in 2012 and completed
         a Master’s in Applied Informatics in 2013. I began my career as a web

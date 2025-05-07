@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Socials = () => {
   return (
-    <div className="flex justify-center gap-3 mt-6 mb-4 items-center fade-in">
+    <div className="flex justify-center gap-3 mt-4 mb-4 items-center fade-in">
       <a
         href="https://www.linkedin.com/in/anibal-sanchez-numa/"
         target="_blank"

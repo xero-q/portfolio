@@ -63,3 +63,11 @@ body {
 .skill-header {
   @apply text-2xl font-semibold mb-2 text-left;
 }
+
+.skill-container {
+  @apply flex flex-col mb-2 text-left items-start w-full; 
+}
+
+.skills-list {
+  @apply flex flex-row items-center flex-wrap;
+}

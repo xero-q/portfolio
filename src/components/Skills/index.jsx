@@ -91,43 +91,43 @@ const skillsOthers = [
 
 const Skills = () => {
   return (
-    <div className="flex flex-col items-center justify-center w-full mt-5 fade-in">
+    <div className="flex flex-col items-center justify-center w-full mt-5 mx-auto md:max-w-[700px] lg:max-w-[900px] fade-in">
       <h2 className="text-3xl font-bold mb-5">Skills</h2>
-      <div className="flex flex-col mb-2">
-        <h3 className="skills-header">Frontend</h3>
-        <div className="flex items-center flex-wrap">
+      <div className="skill-container">
+        <h3 className="skill-header">Frontend</h3>
+        <div className="skills-list">
           {skillsFrontend.map((skill) => (
             <SkillIcon key={skill.name} {...skill} />
           ))}
         </div>
       </div>
-      <div className="flex flex-col mb-2">
-        <h3 className="skills-header">Backend</h3>
-        <div className="flex items-center flex-wrap">
+      <div className="skill-container">
+        <h3 className="skill-header">Backend</h3>
+        <div className="skills-list">
           {skillsBackend.map((skill) => (
             <SkillIcon key={skill.name} {...skill} />
           ))}
         </div>
       </div>
-      <div className="flex flex-col mb-2">
-        <h3 className="skills-header">DBMS</h3>
-        <div className="flex items-center flex-wrap">
+      <div className="skill-container">
+        <h3 className="skill-header">DBMS</h3>
+        <div className="skills-list">
           {skillsDatabases.map((skill) => (
             <SkillIcon key={skill.name} {...skill} />
           ))}
         </div>
       </div>
-      <div className="flex flex-col mb-2">
-        <h3 className="skills-header">DevOps</h3>
-        <div className="flex items-center flex-wrap">
+      <div className="skill-container">
+        <h3 className="skill-header">DevOps</h3>
+        <div className="skills-list">
           {skillsDevOps.map((skill) => (
             <SkillIcon key={skill.name} {...skill} />
           ))}
         </div>
       </div>
-      <div className="flex flex-col mb-2">
-        <h3 className="skills-header">Others</h3>
-        <div className="flex items-center flex-wrap">
+      <div className="skill-container">
+        <h3 className="skill-header">Others</h3>
+        <div className="skills-list">
           {skillsOthers.map((skill) => (
             <SkillIcon key={skill.name} {...skill} />
           ))}
