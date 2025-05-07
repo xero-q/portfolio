@@ -11,7 +11,7 @@ const AboutMe = () => {
         .NET, JavaScript/TypeScript and Python using these libraries and
         frameworks: Angular, React.js, Next.js, NestJS, Django, FastAPI, Yii2
         and Laravel. I have experience with these DBMS: PostgreSQL, MySQL,
-        MSSQL, MongoDB, Redis, DynamoDB and these Cloud providers: AWS and
+        MongoDB, Redis, DynamoDB, SQLite and these Cloud providers: AWS and
         Google Cloud Platform. I also have experience with Machine Learning
         using scikit-learn working on regression and classification tasks.{" "}
       </div>
