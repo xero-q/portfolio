@@ -5,6 +5,7 @@ import AboutMe from "@/components/AboutMe";
 import Skills from "@/components/Skills";
 import Footer from "@/components/Footer";
 import { useState } from "react";
+import ContactForm from "@/components/ContactForm";
 
 export default function Home() {
   const [showBody, setShowBody] = useState(false);
@@ -26,6 +27,7 @@ export default function Home() {
           <Footer />
         </footer>
       )}
+      <ContactForm />
     </div>
   );
 }
