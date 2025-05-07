@@ -3,7 +3,7 @@ import React from "react";
 const AboutMe = () => {
   return (
     <div className="flex flex-col items-center justify-center w-full mt-5 fade-in">
-      <div className="font-extrabold text-center md:max-w-[500px]">
+      <div className="font-extrabold text-center md:max-w-[700px] lg:max-w-[900px]">
         I graduated as Computer Engineer in 2012, and completed a Master in
         Applied Informatics in 2013. I started working as a web developer and
         professor of Mathematics and Statistics until 2019 when I started
