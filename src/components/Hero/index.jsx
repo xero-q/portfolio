@@ -26,7 +26,7 @@ const Hero = ({ onDisplayed }) => {
       <div className="text-2xl font-bold">
         {showSecond && (
           <TypewriterText
-            text="Software/ML Engineer"
+            text="Senior Software Engineer"
             onComplete={() => onDisplayed()}
           />
         )}
