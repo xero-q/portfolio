@@ -11,10 +11,10 @@ const Hero = ({ onDisplayed }) => {
   const [showSocials, setShowSocials] = useState(false);
 
   const handleCompleteText = () => {
+    setShowSocials(true);
     if (onDisplayed) {
       onDisplayed();
     }
-    setShowSocials(true);
   };
 
   return (
