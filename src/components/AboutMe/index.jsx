@@ -15,7 +15,7 @@ const AboutMe = () => {
         systems, including PostgreSQL, MySQL, MongoDB, Redis, DynamoDB, and
         SQLite, as well as cloud providers like AWS and Google Cloud.
         Additionally, I have experience in Machine Learning using scikit-learn
-        and PyTorch, working on regression and classification tasks..{" "}
+        and PyTorch, working on regression and classification tasks.{" "}
       </div>
     </div>
   );
