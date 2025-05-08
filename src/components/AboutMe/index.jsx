@@ -5,7 +5,7 @@ const AboutMe = () => {
     <div className="flex flex-col items-center justify-center w-full fade-in">
       <div className="font-extrabold text-center md:max-w-[700px] lg:max-w-[900px]">
         I graduated with a degree in Computer Engineering in 2012 and completed
-        a Master’s in Applied Informatics in 2013. I began my career as a web
+        a Master’s in Applied Informatics in 2014. I began my career as a web
         developer and as a professor of Mathematics and Statistics, roles I held
         until 2019, when I transitioned to working full-time as a software
         developer. I have developed software using PHP, .NET,
