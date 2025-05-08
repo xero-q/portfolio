@@ -1,6 +1,24 @@
 import React from "react";
 import SkillIcon from "@/components/SkillIcon";
 
+const skillsProgrammingLanguages = [
+  {
+    name: "JavaScript",
+    src: "/assets/logos/javascript.svg",
+    size: 20
+  },
+  {
+    name: "TypeScript",
+    src: "/assets/logos/typescript.svg",
+    size: 20
+  },
+  {
+    name: "Python",
+    src: "/assets/logos/python.svg",
+    size: 30
+  }
+];
+
 const skillsFrontend = [
   {
     name: "Angular",
@@ -96,6 +114,14 @@ const Skills = () => {
   return (
     <div className="flex flex-col items-center justify-center w-full mt-5 mx-auto md:max-w-[700px] lg:max-w-[900px] fade-in">
       <h2 className="text-3xl font-bold mb-5">Skills</h2>
+      <div className="skill-container">
+        <h3 className="skill-header">Programming Languages</h3>
+        <div className="skills-list">
+          {skillsProgrammingLanguages.map((skill) => (
+            <SkillIcon key={skill.name} {...skill} />
+          ))}
+        </div>
+      </div>
       <div className="skill-container">
         <h3 className="skill-header">Frontend</h3>
         <div className="skills-list">
