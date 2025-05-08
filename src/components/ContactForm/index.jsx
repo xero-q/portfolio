@@ -62,7 +62,7 @@ export default function ContactForm() {
         <input
           type="text"
           {...register("name")}
-          className="mt-1 w-full border-blue-300 rounded-md shadow-sm p-1 focus:ring-blue-400 focus:border-blue-400"
+          className="mt-1 w-full ring-blue-300 border-blue-300 rounded-md shadow-sm p-1 focus:ring-blue-400 focus:border-blue-400"
         />
         {errors.name && (
           <p className="text-sm text-red-400 mt-1">{errors.name.message}</p>
@@ -76,7 +76,7 @@ export default function ContactForm() {
         <input
           type="email"
           {...register("email")}
-          className="mt-1 w-full border-blue-300 rounded-md shadow-sm p-1 focus:ring-blue-400 focus:border-blue-400"
+          className="mt-1 w-full ring-blue-300 border-blue-300 rounded-md shadow-sm p-1 focus:ring-blue-400 focus:border-blue-400"
         />
         {errors.email && (
           <p className="text-sm text-red-400 mt-1">{errors.email.message}</p>
@@ -90,7 +90,7 @@ export default function ContactForm() {
         <textarea
           rows={10}
           {...register("message")}
-          className="resize-none mt-1 w-full border-blue-300 rounded-md shadow-sm p-1 focus:ring-blue-400 focus:border-blue-400"
+          className="resize-none mt-1 w-full ring-blue-300 border-blue-300 rounded-md shadow-sm p-1 focus:ring-blue-400 focus:border-blue-400"
         />
         {errors.message && (
           <p className="text-sm text-red-400 mt-1">{errors.message.message}</p>
