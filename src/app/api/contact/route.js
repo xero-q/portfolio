@@ -1,15 +1,42 @@
 // pages/api/contact.js
 import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z
+    .string()
+    .min(1, "Name is required")
+    .max(100, "Your name can not exceed 100 characters"),
+  email: z
+    .string()
+    .min(1, "Email is required")
+    .max(300, "Your email can not exceed 300 characters")
+    .email("Invalid email address"),
+  message: z
+    .string()
+    .min(1, "Message is required")
+    .max(2000, "Your message can not exceed 2000 characters.")
+});
 
 export async function POST(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method not allowed" });
   }
 
-  const { name, email, message } = await req.json();
+  const body = await req.json();
 
-  console.log({ name, email, message });
+  const result = contactSchema.safeParse(body);
+  if (!result.success) {
+    return NextResponse.json(
+      { errors: result.error.flatten() },
+      { status: 400 }
+    );
+  }
+
+  const validatedData = result.data;
+
+  const { name, email, message } = validatedData;
 
   const transporter = nodemailer.createTransport({
     service: "gmail",

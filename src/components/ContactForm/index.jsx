@@ -3,12 +3,18 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 
-// Zod schema
 const contactSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  email: z.string().min(1, "Email is required").email("Invalid email address"),
+  name: z
+    .string({ required_error: "Name is required" })
+    .min(1, "Name is required")
+    .max(100, "Your name can not exceed 100 characters"),
+  email: z
+    .string({ required_error: "Email is required" })
+    .min(1, "Email is required")
+    .max(300, "Your email can not exceed 300 characters")
+    .email("Invalid email address"),
   message: z
-    .string()
+    .string({ required_error: "Message is required" })
     .min(1, "Message is required")
     .max(2000, "Your message can not exceed 2000 characters.")
 });
@@ -62,6 +68,7 @@ export default function ContactForm() {
         <input
           type="text"
           {...register("name")}
+          maxLength={100}
           className="mt-1 w-full border border-blue-200 rounded-md shadow-sm p-1 focus:border-blue-400 focus:outline-none focus:ring-0"
         />
         {errors.name && (
@@ -76,6 +83,7 @@ export default function ContactForm() {
         <input
           type="email"
           {...register("email")}
+          maxLength={300}
           className="mt-1 w-full border border-blue-200 rounded-md shadow-sm p-1 focus:border-blue-400 focus:outline-none focus:ring-0"
         />
         {errors.email && (
@@ -90,6 +98,7 @@ export default function ContactForm() {
         <textarea
           rows={10}
           {...register("message")}
+          maxLength={2000}
           className="resize-none mt-1 w-full border border-blue-200 rounded-md shadow-sm p-1 focus:border-blue-400 focus:outline-none focus:ring-0"
         />
         {errors.message && (
