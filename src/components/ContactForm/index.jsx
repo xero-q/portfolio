@@ -16,10 +16,6 @@ const contactSchema = z.object({
 export default function ContactForm() {
   const [status, setStatus] = useState("");
 
-  const defineStatusPeriod = (status) => {
-    setStatus(status);
-  };
-
   const {
     register,
     handleSubmit,
