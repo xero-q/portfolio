@@ -12,10 +12,10 @@ const AboutMe = () => {
         JavaScript/TypeScript, and Python, leveraging libraries and frameworks
         such as Angular, React.js, Next.js, NestJS, ASP.NET, Django, FastAPI,
         Yii2, and Laravel. I have experience with various database management
-        systems, including PostgreSQL, MySQL, MongoDB, Redis, DynamoDB, and
-        SQLite, as well as cloud providers like AWS and Google Cloud.
-        Additionally, I have experience in Machine Learning using scikit-learn
-        and PyTorch, working on regression and classification tasks.{" "}
+        systems, including PostgreSQL, MySQL, MongoDB, Redis and SQLite, as well
+        as cloud providers like AWS and Google Cloud. Additionally, I have
+        experience in Machine Learning using scikit-learn and PyTorch, working
+        on regression and classification tasks.{" "}
       </div>
     </div>
   );

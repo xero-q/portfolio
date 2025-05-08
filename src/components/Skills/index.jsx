@@ -57,10 +57,6 @@ const skillsDatabases = [
     name: "Redis",
     src: "/assets/logos/redis.svg",
     size: 90
-  },
-  {
-    name: "DynamoDB",
-    src: "/assets/logos/dynamodb.svg"
   }
 ];
 
