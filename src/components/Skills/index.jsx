@@ -72,6 +72,13 @@ const skillsDevOps = [
   }
 ];
 
+const skillsMachineLearning = [
+  {
+    name: "Scikit Learn",
+    src: "/assets/logos/sklearn.png"
+  }
+];
+
 const skillsOthers = [
   {
     name: "Git",
@@ -117,6 +124,14 @@ const Skills = () => {
         <h3 className="skill-header">DevOps</h3>
         <div className="skills-list">
           {skillsDevOps.map((skill) => (
+            <SkillIcon key={skill.name} {...skill} />
+          ))}
+        </div>
+      </div>
+      <div className="skill-container">
+        <h3 className="skill-header">AI/ML</h3>
+        <div className="skills-list">
+          {skillsMachineLearning.map((skill) => (
             <SkillIcon key={skill.name} {...skill} />
           ))}
         </div>
