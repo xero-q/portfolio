@@ -1,7 +1,7 @@
-// pages/api/contact.js
 import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { escapeHTML } from "@/lib/functions";
 
 const contactSchema = z.object({
   name: z
@@ -38,6 +38,10 @@ export async function POST(req, res) {
 
   const { name, email, message } = validatedData;
 
+  const sanitizedName = escapeHTML(name),
+    sanitizedEmail = escapeHTML(email),
+    sanitizedMessage = escapeHTML(message);
+
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -50,11 +54,11 @@ export async function POST(req, res) {
     await transporter.sendMail({
       from: email,
       to: process.env.EMAIL_TO,
-      subject: `New message from ${name}`,
+      subject: `New message from ${sanitizedName}`,
       text: message,
-      html: `<p><strong>Name:</strong> ${name}</p>
-             <p><strong>Email:</strong> ${email}</p>
-             <p><strong>Message:</strong> ${message}</p>`
+      html: `<p><strong>Name:</strong> ${sanitizedName}</p>
+             <p><strong>Email:</strong> ${sanitizedEmail}</p>
+             <p><strong>Message:</strong> ${sanitizedMessage}</p>`
     });
 
     return NextResponse.json(
