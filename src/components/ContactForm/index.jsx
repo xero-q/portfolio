@@ -1,91 +1,115 @@
-// components/ContactForm.js
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 
+// Zod schema
+const contactSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().min(1, "Email is required").email("Invalid email address"),
+  message: z
+    .string()
+    .min(1, "Message is required")
+    .max(2000, "Your message can not exceed 2000 characters.")
+});
+
 export default function ContactForm() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: ""
-  });
   const [status, setStatus] = useState("");
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const defineStatusPeriod = (status) => {
+    setStatus(status);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus("Sending...");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset
+  } = useForm({
+    resolver: zodResolver(contactSchema),
+    mode: "onChange"
+  });
 
+  const onSubmit = async (data) => {
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(data)
       });
 
-      const data = await res.json();
-      setStatus(data.message);
+      const result = await res.json();
+      setStatus(result.message);
+      reset();
     } catch (err) {
-      setStatus("Something went wrong.", err);
+      setStatus("Something went wrong.");
+    } finally {
+      setTimeout(() => setStatus(""), 3000);
     }
   };
 
   return (
     <form
-      onSubmit={handleSubmit}
-      className="max-w-xl mx-auto p-6 bg-white rounded-xl shadow space-y-4"
+      onSubmit={handleSubmit(onSubmit)}
+      className="max-w-xl mx-auto p-6 rounded-xl shadow space-y-4"
     >
-      <h2 className="text-2xl font-bold text-gray-800">Contact Us</h2>
+      <h2 className="text-3xl font-bold">Contact Me</h2>
+      <h3 className="mt-1">
+        If you want to contact me for any job opportunity or inquiry, leave me a
+        message
+      </h3>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Name</label>
+        <label className="block text-sm font-medium">
+          Name: <span className="text-red-400">*</span>
+        </label>
         <input
-          name="name"
           type="text"
-          value={formData.name}
-          onChange={handleChange}
-          required
-          className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          {...register("name")}
+          className="mt-1 w-full border-gray-300 rounded-md shadow-sm p-1 focus:ring-blue-400 focus:border-blue-400"
         />
+        {errors.name && (
+          <p className="text-sm text-red-400 mt-1">{errors.name.message}</p>
+        )}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Email</label>
+        <label className="block text-sm font-medium">
+          Email: <span className="text-red-400">*</span>
+        </label>
         <input
-          name="email"
           type="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-          className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          {...register("email")}
+          className="mt-1 w-full border-gray-300 rounded-md shadow-sm p-1 focus:ring-blue-400 focus:border-blue-400"
         />
+        {errors.email && (
+          <p className="text-sm text-red-400 mt-1">{errors.email.message}</p>
+        )}
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">
-          Message
+        <label className="block text-sm font-medium">
+          Message: <span className="text-red-400">*</span>
         </label>
         <textarea
-          name="message"
-          rows={5}
-          value={formData.message}
-          onChange={handleChange}
-          required
-          className="mt-1 w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+          rows={10}
+          {...register("message")}
+          className="resize-none mt-1 w-full border-gray-300 rounded-md shadow-sm p-1 focus:ring-blue-400 focus:border-blue-400"
         />
+        {errors.message && (
+          <p className="text-sm text-red-400 mt-1">{errors.message.message}</p>
+        )}
       </div>
 
       <button
         type="submit"
-        className="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 transition"
+        disabled={isSubmitting}
+        className="w-full py-2 px-4 bg-blue-400 text-white cursor-pointer font-semibold rounded-md hover:bg-indigo-700 transition disabled:opacity-50"
       >
-        Send Message
+        {isSubmitting ? "Sending..." : "Send Message"}
       </button>
 
-      {status && (
-        <p className="text-sm text-center text-gray-600 mt-2">{status}</p>
-      )}
+      {status && <p className="text-sm text-center mt-2">{status}</p>}
     </form>
   );
 }

@@ -18,6 +18,7 @@ export default function Home() {
             <>
               <AboutMe />
               <Skills />
+              <ContactForm />
             </>
           )}
         </div>
@@ -27,7 +28,6 @@ export default function Home() {
           <Footer />
         </footer>
       )}
-      <ContactForm />
     </div>
   );
 }
