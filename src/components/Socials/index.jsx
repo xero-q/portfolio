@@ -12,8 +12,8 @@ const Socials = () => {
       >
         <Image
           src="/assets/logos/linkedin.png"
-          width={30}
-          height={25}
+          width={35}
+          height={29}
           alt="LinkedIn"
           className="hover:scale-110"
         />
