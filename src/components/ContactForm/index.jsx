@@ -81,7 +81,7 @@ export default function ContactForm() {
           Email: <span className="text-red-400">*</span>
         </label>
         <input
-          type="email"
+          type="text"
           {...register("email")}
           maxLength={300}
           className="mt-1 w-full border border-blue-200 rounded-md shadow-sm p-1 focus:border-blue-400 focus:outline-none focus:ring-0"
