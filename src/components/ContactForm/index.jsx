@@ -53,7 +53,7 @@ export default function ContactForm() {
   return (
     <div className="w-full flex justify-center mx-auto p-4 lg:p-6 border border-gray-600 rounded-2xl shadow-[0_0_20px_rgba(100,100,100,0.4)] lg:max-w-[1390px]">
       <form onSubmit={handleSubmit(onSubmit)} className="max-w-xl">
-        <h2 className="text-3xl font-bold">Contact Me</h2>
+        <h2 className="text-3xl font-bold">Contact me</h2>
         <h3 className="mt-1">
           If you want to contact me for any job opportunity or inquiry, leave me
           a message
