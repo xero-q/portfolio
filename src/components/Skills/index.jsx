@@ -113,7 +113,7 @@ const skillsOthers = [
 const Skills = () => {
   return (
     <div className="flex flex-col items-center justify-center lg:items-start lg:justify-start w-full mt-5 lg:mt-0 mx-auto lg:mx-0 lg:max-w-[650px] fade-in border border-gray-600 p-4 rounded-2xl shadow-[0_0_20px_rgba(100,100,100,0.4)] lg:border-none lg:shadow-none lg:p-0">
-      <h2 className="text-3xl font-bold mb-5">Skills</h2>
+      <h2 className="text-3xl font-semibold mb-5">Skills</h2>
       <div className="skill-container">
         <h3 className="skill-header">Programming Languages</h3>
         <div className="skills-list">
