@@ -19,7 +19,7 @@ const Hero = ({ onDisplayed }) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-full mt-5">
+    <div className="flex flex-col items-center justify-center w-full mt-15">
       <Image
         src="/assets/me.jpg"
         alt="Aníbal Sánchez"
