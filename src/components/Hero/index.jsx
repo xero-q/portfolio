@@ -11,6 +11,7 @@ const Hero = ({ onDisplayed }) => {
   const [showSocials, setShowSocials] = useState(false);
 
   const handleCompleteText = () => {
+    setShowSecond(true);
     setShowSocials(true);
     if (onDisplayed) {
       onDisplayed();
@@ -24,22 +25,20 @@ const Hero = ({ onDisplayed }) => {
         alt="Aníbal Sánchez"
         width={220}
         height={220}
-        className="rounded-4xl shadow-2xs mb-2 fade-in"
+        className="rounded-full object-cover mb-2 fade-in"
       />
-      <div className="text-2xl font-bold">
+      <div className="text-2xl font-bold mb-2">
         <TypewriterText
           text="Hi, I'm Aníbal Sánchez"
-          onComplete={() => setShowSecond(true)}
+          onComplete={handleCompleteText}
         />
       </div>
-      <div className="text-2xl font-bold">
-        {showSecond && (
-          <TypewriterText
-            text="Senior Software Engineer"
-            onComplete={handleCompleteText}
-          />
-        )}
-      </div>
+      {showSecond && (
+        <div className="text-2xl text-gray-300 font-bold fade-in w-fit px-3 py-2 rounded-2xl bg-gradient-to-br from-gray-600 to-blue-900 shadow-[0_0_20px_rgba(100,100,100,0.4)]">
+          Senior Software Engineer
+        </div>
+      )}
+
       {showSocials && <Socials />}
     </div>
   );

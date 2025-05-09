@@ -2,8 +2,9 @@ import React from "react";
 
 const AboutMe = () => {
   return (
-    <div className="flex flex-col items-center justify-center w-full fade-in">
-      <div className="font-extrabold text-center sm:text-justify md:max-w-[700px] lg:max-w-[900px]">
+    <div className="flex flex-col items-center justify-center lg:items-start w-full fade-in lg:max-w-[650px] border border-gray-600 p-4 rounded-2xl shadow-[0_0_20px_rgba(100,100,100,0.4)] lg:border-none lg:shadow-none lg:p-0">
+      <h2 className="text-3xl font-bold mb-5">About me</h2>
+      <div className="font-extrabold text-center lg:text-left md:max-w-[700px] lg:max-w-[900px]">
         I graduated with a degree in Computer Engineering in 2012 and completed
         a Master’s in Applied Informatics in 2014. I began my career as a web
         developer and as a professor of Mathematics and Statistics, roles I held
