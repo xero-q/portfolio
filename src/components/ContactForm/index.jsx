@@ -60,47 +60,57 @@ export default function ContactForm() {
         </h3>
 
         <div>
-          <label className="block text-sm font-medium">
+          <label className="block text-sm font-medium" htmlFor="name">
             Name: <span className="text-red-400">*</span>
           </label>
           <input
             type="text"
+            id="name"
+            aria-describedby="error-name"
             {...register("name")}
             maxLength={100}
             className="mt-1 w-full border border-blue-200 rounded-md shadow-sm p-1 focus:border-blue-400 focus:outline-none focus:ring-0"
           />
           {errors.name && (
-            <p className="text-sm text-red-400 mt-1">{errors.name.message}</p>
+            <p className="text-sm text-red-400 mt-1" id="error-name">
+              {errors.name.message}
+            </p>
           )}
         </div>
 
         <div>
-          <label className="block text-sm font-medium">
+          <label className="block text-sm font-medium" htmlFor="email">
             Email: <span className="text-red-400">*</span>
           </label>
           <input
             type="text"
             {...register("email")}
+            id="email"
+            aria-describedby="error-email"
             maxLength={300}
             className="mt-1 w-full border border-blue-200 rounded-md shadow-sm p-1 focus:border-blue-400 focus:outline-none focus:ring-0"
           />
           {errors.email && (
-            <p className="text-sm text-red-400 mt-1">{errors.email.message}</p>
+            <p className="text-sm text-red-400 mt-1" id="error-email">
+              {errors.email.message}
+            </p>
           )}
         </div>
 
         <div>
-          <label className="block text-sm font-medium">
+          <label className="block text-sm font-medium" htmlFor="message">
             Message: <span className="text-red-400">*</span>
           </label>
           <textarea
             rows={10}
             {...register("message")}
+            id="message"
+            aria-describedby="error-message"
             maxLength={2000}
             className="resize-none mt-1 w-full border border-blue-200 rounded-md shadow-sm p-1 focus:border-blue-400 focus:outline-none focus:ring-0"
           />
           {errors.message && (
-            <p className="text-sm text-red-400 mt-1">
+            <p className="text-sm text-red-400 mt-1" id="error-message">
               {errors.message.message}
             </p>
           )}
