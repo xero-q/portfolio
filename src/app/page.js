@@ -16,7 +16,7 @@ export default function Home() {
           <Hero onDisplayed={() => setShowBody(true)} />
           {showBody && (
             <>
-              <div className="flex flex-col lg:flex-row lg:items-start lg:gap-10 lg:mx-auto lg:border lg:border-gray-600 lg:p-4 lg:rounded-2xl lg:shadow-[0_0_20px_rgba(100,100,100,0.4)]">
+              <div className="flex flex-col mb-4 lg:flex-row lg:items-start lg:gap-10 lg:mx-auto lg:border lg:border-gray-600 lg:p-6 lg:rounded-2xl lg:shadow-[0_0_20px_rgba(100,100,100,0.4)]">
                 <AboutMe />
                 <Skills />
               </div>
