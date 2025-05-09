@@ -22,7 +22,7 @@ const Hero = ({ onDisplayed }) => {
     <div className="flex flex-col items-center justify-center w-full mt-15">
       <Image
         src="/assets/me.jpg"
-        alt="Aníbal Sánchez"
+        alt="Aníbal Sánchez Numa"
         width={220}
         height={220}
         className="rounded-full object-cover mb-2 fade-in"
