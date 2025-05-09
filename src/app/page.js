@@ -21,6 +21,7 @@ export default function Home() {
                 <Skills />
               </div>
               <ContactForm />
+              <div className="h-[40px]"></div>
             </>
           )}
         </div>
