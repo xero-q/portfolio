@@ -1,5 +1,6 @@
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
+import Head from "next/head";
 import "./globals.css";
 
 export const metadata = {
@@ -10,6 +11,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <Head>
+        <meta
+          name="keywords"
+          content="software, Cuban, Aníbal, Sánchez, Numa, developer, web, frontend, backend, fullstack, software developer, software engineer, frontend developer, backend developer,fullstack developer"
+        />
+      </Head>
       <body>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-YJFQW7M4E5"
