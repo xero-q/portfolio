@@ -12,7 +12,7 @@ const ProjectCard = ({ description, link, imgUrl }) => {
         alt={description}
         width={300}
         height={300}
-        className="object-contain mb-4 cursor-pointer"
+        className="object-contain mb-4 cursor-pointer min-h-[150px]"
         onClick={() => setIsModalOpen(true)}
       />
       <h3 className="text-gray-800 text-xl font-semibold mb-1 min-h-[84px]">

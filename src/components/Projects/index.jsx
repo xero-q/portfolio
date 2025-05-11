@@ -3,28 +3,27 @@ import ProjectCard from "@/components/ProjectCard";
 
 const projects = [
   {
-    description: "Website of OpsTalent company",
+    description: "OpsTalent company website",
     link: "https://opstalent.com",
     imgUrl: "/assets/projects/opstalent.png"
   },
   {
-    description: "Website of Dspot company",
+    description: "Dspot company website",
     link: "https://www.dspot.com.pl",
     imgUrl: "/assets/projects/dspot.png"
   },
   {
-    description: "Tickets platform of Lanetalk Company",
+    description: "Lanetalk company tickets platform",
     link: "https://tickets.lanetalk.com",
     imgUrl: "/assets/projects/tickets.png"
   },
   {
-    description: "Website of Afrimed Company",
+    description: "Afrimed company website",
     link: "https://afrimedtelehealth.com/",
     imgUrl: "/assets/projects/afrimed.png"
   },
   {
-    description:
-      "Construex: El Marketplace de Construcción, Industria y Diseño",
+    description: "Construex: Building, industry and design marketplace",
     link: "https://www.construex.com.ec/",
     imgUrl: "/assets/projects/construex.png"
   }

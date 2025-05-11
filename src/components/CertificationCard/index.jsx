@@ -16,9 +16,9 @@ const CertificationCard = ({
       <Image
         src={imgUrl}
         alt={title}
-        width={100}
-        height={100}
-        className="object-contain mb-4 cursor-pointer"
+        width={90}
+        height={90}
+        className="object-contain mb-4 cursor-pointer min-h-[83px]"
         onClick={() => setIsModalOpen(true)}
       />
       <h3 className="text-xl font-semibold text-gray-800 mb-1 min-h-[84px]">
