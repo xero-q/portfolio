@@ -12,7 +12,7 @@ const CertificationCard = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="bg-gray-300 shadow-xl rounded-2xl p-6 flex flex-col items-center text-center">
+    <div className="bg-gradient-to-br from-indigo-100 to-green-50 shadow-xl rounded-2xl p-6 flex flex-col items-center text-center">
       <Image
         src={imgUrl}
         alt={title}
@@ -21,7 +21,7 @@ const CertificationCard = ({
         className="object-contain mb-4 cursor-pointer"
         onClick={() => setIsModalOpen(true)}
       />
-      <h3 className="text-xl font-bold text-blue-500 mb-1 min-h-[84px]">
+      <h3 className="text-xl font-semibold text-gray-800 mb-1 min-h-[84px]">
         {title}
       </h3>
       <p className="text-gray-800 text-sm mb-2">{organization}</p>
@@ -29,7 +29,7 @@ const CertificationCard = ({
       <a
         href={link}
         target="_blank"
-        className="text-blue-500 font-semibold hover:underline text-sm"
+        className="text-blue-400 font-semibold hover:underline text-sm"
       >
         View Credential →
       </a>
