@@ -1,12 +1,39 @@
 // components/ImageModal.js
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 export default function ImageModal({ isOpen, onClose, imageUrl, alt = "" }) {
+  const modalRef = useRef();
+
+  // Close on ESC key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    if (isOpen) {
+      document.addEventListener("keydown", handleKeyDown);
+    }
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+
+  // Click outside to close
+  const handleClickOutside = (e) => {
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
+      onClose();
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
-      <div className="relative">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70"
+      onClick={handleClickOutside}
+    >
+      <div ref={modalRef} className="relative">
         <img
           src={imageUrl}
           alt={alt}

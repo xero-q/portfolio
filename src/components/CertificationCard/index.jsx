@@ -36,6 +36,7 @@ const CertificationCard = ({
       <ImageModal
         isOpen={isModalOpen}
         imageUrl={imgUrl}
+        alt={title}
         onClose={() => setIsModalOpen(false)}
       />
     </div>
