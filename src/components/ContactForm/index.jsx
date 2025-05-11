@@ -55,8 +55,8 @@ export default function ContactForm() {
       <form onSubmit={handleSubmit(onSubmit)} className="max-w-xl">
         <h2 className="text-3xl font-semibold">Contact me</h2>
         <h3 className="mt-1">
-          If you want to contact me for any job opportunity or inquiry, leave me
-          a message
+          If you want to contact me for any job opportunity or inquiry, please
+          leave me a message.
         </h3>
 
         <div>

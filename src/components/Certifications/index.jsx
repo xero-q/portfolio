@@ -48,9 +48,9 @@ const certifications = [
 
 const Certifications = () => {
   return (
-    <div className="w-full flex flex-col justify-center mb-4 mx-auto p-4 lg:p-6 border border-gray-600 rounded-2xl shadow-[0_0_20px_rgba(100,100,100,0.4)] lg:max-w-[1390px]">
-      <h2 className="text-3xl font-bold text-center mb-8">Certifications</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+    <div className="section-container">
+      <h2 className="section-header">Certifications</h2>
+      <div className="section-body">
         {certifications.map((certification, index) => (
           <CertificationCard {...certification} key={index} />
         ))}

@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { useState } from "react";
 import ContactForm from "@/components/ContactForm";
 import Certifications from "@/components/Certifications";
+import Projects from "@/components/Projects";
 
 export default function Home() {
   const [showBody, setShowBody] = useState(false);
@@ -22,6 +23,7 @@ export default function Home() {
                 <Skills />
               </div>
               <Certifications />
+              <Projects />
               <ContactForm />
               <div className="h-[40px]"></div>
             </>
