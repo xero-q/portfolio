@@ -13,6 +13,10 @@ const contactSchema = z.object({
     .min(1, "Email is required")
     .max(300, "Your email can not exceed 300 characters")
     .email("Invalid email address"),
+  subject: z
+    .string()
+    .min(1, "Subject is required")
+    .max(300, "Your subject can not exceed 300 characters"),
   message: z
     .string()
     .min(1, "Message is required")
@@ -36,10 +40,11 @@ export async function POST(req, res) {
 
   const validatedData = result.data;
 
-  const { name, email, message } = validatedData;
+  const { name, email, subject, message } = validatedData;
 
   const sanitizedName = escapeHTML(name),
     sanitizedEmail = escapeHTML(email),
+    sanitizeSubject = escapeHTML(subject),
     sanitizedMessage = escapeHTML(message);
 
   const transporter = nodemailer.createTransport({
@@ -58,6 +63,7 @@ export async function POST(req, res) {
       text: message,
       html: `<p><strong>Name:</strong> ${sanitizedName}</p>
              <p><strong>Email:</strong> ${sanitizedEmail}</p>
+             <p><strong>Subject:</strong> ${sanitizeSubject}</p>
              <p><strong>Message:</strong> ${sanitizedMessage}</p>`
     });
 

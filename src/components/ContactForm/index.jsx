@@ -20,6 +20,10 @@ export default function ContactForm() {
       .min(1, t.contact.email_required)
       .max(300)
       .email(t.contact.email_invalid),
+    subject: z
+      .string({ required_error: t.contact.subject_required })
+      .min(1, t.contact.subject_required)
+      .max(300),
     message: z
       .string({ required_error: t.contact.message_required })
       .min(1, t.contact.message_required)
@@ -97,6 +101,25 @@ export default function ContactForm() {
           {errors.email && (
             <p className="text-sm text-red-400 mt-1" id="error-email">
               {errors.email.message}
+            </p>
+          )}
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium" htmlFor="subject">
+            {t.contact.subject} <span className="text-red-400">*</span>
+          </label>
+          <input
+            type="text"
+            {...register("subject")}
+            id="subject"
+            aria-describedby="error-subject"
+            maxLength={300}
+            className="mt-1 w-full border border-blue-200 rounded-md shadow-sm p-1 focus:border-blue-400 focus:outline-none focus:ring-0"
+          />
+          {errors.subject && (
+            <p className="text-sm text-red-400 mt-1" id="error-subject">
+              {errors.subject.message}
             </p>
           )}
         </div>
