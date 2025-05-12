@@ -1,6 +1,7 @@
 import { useLocale } from "@/context/LocaleContext";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect } from "react";
+import { SUPPORTED_LOCALES, DEFAULT_LOCALE } from "@/lib/constants";
 
 const LanguageSwitcher = () => {
   const { locale, setLocale } = useLocale();
@@ -14,8 +15,8 @@ const LanguageSwitcher = () => {
   };
 
   useEffect(() => {
-    if (!["/en", "/es"].includes(pathname)) {
-      switchLocale("en", true);
+    if (!SUPPORTED_LOCALES.includes(pathname.substring(1))) {
+      switchLocale(DEFAULT_LOCALE, true);
     }
   }, [pathname]);
 

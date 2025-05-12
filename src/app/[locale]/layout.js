@@ -3,6 +3,7 @@ import Script from "next/script";
 import Head from "next/head";
 import "@/app/globals.css";
 import { LocaleProvider } from "@/context/LocaleContext";
+import { SUPPORTED_LOCALES, DEFAULT_LOCALE } from "@/lib/constants";
 
 export const metadata = {
   title: "Portfolio - Aníbal Sánchez Numa",
@@ -11,9 +12,12 @@ export const metadata = {
 
 export default async function RootLayout({ children, params }) {
   const { locale } = await params;
+  const correctLocale = SUPPORTED_LOCALES.includes(locale)
+    ? locale
+    : DEFAULT_LOCALE;
 
   return (
-    <html lang="en">
+    <html lang={correctLocale}>
       <Head>
         <meta
           name="keywords"
@@ -45,7 +49,7 @@ export default async function RootLayout({ children, params }) {
     });
   `}
         </Script>
-        <LocaleProvider locale={locale}>{children}</LocaleProvider>
+        <LocaleProvider locale={correctLocale}>{children}</LocaleProvider>
         <Analytics />
       </body>
     </html>
