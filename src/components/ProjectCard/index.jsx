@@ -6,7 +6,7 @@ const ProjectCard = ({ description, link, imgUrl }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div className="bg-gradient-to-br from-indigo-100 to-green-50 shadow-xl rounded-2xl p-6 flex flex-col items-center text-center">
+    <div className="bg-gradient-to-br from-green-50 to-indigo-100 shadow-xl rounded-2xl p-6 flex flex-col items-center text-center">
       <Image
         src={imgUrl}
         alt={description}
