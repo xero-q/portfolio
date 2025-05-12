@@ -41,9 +41,9 @@ export default function ImageModal({ isOpen, onClose, imageUrl, alt = "" }) {
         />
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 text-black text-4xl font-bold cursor-pointer"
+          className="absolute top-2 right-2 font-bold bg-black/50 text-white text-2xl rounded-full p-2 cursor-pointer size-10 flex justify-center items-center"
         >
-          ×
+          X
         </button>
       </div>
     </div>
