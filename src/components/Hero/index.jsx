@@ -34,7 +34,7 @@ const Hero = ({ onDisplayed }) => {
         />
       </div>
       {showSecond && (
-        <div className="text-2xl text-gray-300 font-semibold fade-in w-fit px-3 py-2 rounded-2xl bg-gradient-to-br from-gray-600 to-blue-900 shadow-[0_0_20px_rgba(100,100,100,0.4)]">
+        <div className="text-center text-2xl text-gray-300 font-semibold fade-in w-fit px-3 py-2 rounded-2xl bg-gradient-to-br from-gray-600 to-blue-900 shadow-[0_0_20px_rgba(100,100,100,0.4)]">
           Senior Software Engineer
         </div>
       )}

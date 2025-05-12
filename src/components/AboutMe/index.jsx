@@ -6,14 +6,15 @@ const AboutMe = () => {
       <h2 className="text-3xl font-semibold mb-5">About me</h2>
       <div className="font-semibold text-center lg:text-left mb-5">
         I'm a developer with more than 11 years of experience working on web
-        apps and sites, bots and AI/ML. I have developed software using PHP,
-        .NET, JavaScript/TypeScript and Python, leveraging libraries and
-        frameworks such as Angular, React.js, Next.js, NestJS, ASP.NET, Django,
-        FastAPI, Yii2, and Laravel. I have experience with various database
-        management systems, including PostgreSQL, MySQL, MongoDB, Redis and
-        SQLite, as well as cloud providers like AWS and Google Cloud.
-        Additionally, I have experience in Machine Learning using scikit-learn
-        and PyTorch, working on regression and classification tasks.{" "}
+        apps and sites, having worked also with bots and AI/ML. I have developed
+        software using PHP, .NET, JavaScript/TypeScript and Python, leveraging
+        libraries and frameworks such as Angular, React.js, Next.js, NestJS,
+        ASP.NET, Django, FastAPI, Yii2, and Laravel. I have experience with
+        various database management systems, including PostgreSQL, MySQL,
+        MongoDB, Redis and SQLite, as well as cloud providers like AWS and
+        Google Cloud. Additionally, I have experience in Machine Learning using
+        scikit-learn and PyTorch, working on regression and classification
+        tasks.{" "}
       </div>
       <h3 className="text-2xl font-semibold mb-5">Education</h3>
       <div className="font-semibold text-center lg:text-left">
