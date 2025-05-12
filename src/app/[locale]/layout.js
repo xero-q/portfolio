@@ -6,7 +6,8 @@ import { SUPPORTED_LOCALES, DEFAULT_LOCALE } from "@/lib/constants";
 
 export const metadata = {
   title: "Portfolio - Aníbal Sánchez Numa",
-  description: "Personal website of Aníbal Sánchez Numa"
+  description:
+    "Personal website of Aníbal Sánchez Numa. It contains my bio, skills, certifications, courses and projects."
 };
 
 export default async function RootLayout({ children, params }) {
@@ -22,6 +23,8 @@ export default async function RootLayout({ children, params }) {
           name="keywords"
           content="software, Cuban, Aníbal, Sánchez, Numa, developer, web, frontend, backend, fullstack, software developer, software engineer, frontend developer, backend developer,fullstack developer"
         />
+        <link rel="canonical" href="https://www.anibalnuma.com" />
+
         <link
           rel="alternate"
           hrefLang="en"

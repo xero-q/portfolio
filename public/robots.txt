@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://anibalnuma.com
+
+# Sitemaps
+Sitemap: https://anibalnuma.com/sitemap.xml
