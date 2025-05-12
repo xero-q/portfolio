@@ -33,6 +33,11 @@ const projects = [
     imgUrl: "/assets/projects/afrimed.png"
   },
   {
+    description: "MakerDAO MIPs Portal",
+    link: "https://mips.makerdao.com",
+    imgUrl: "/assets/projects/mips.png"
+  },
+  {
     description: "Construex: Building, industry and design marketplace",
     link: "https://www.construex.com.ec/",
     imgUrl: "/assets/projects/construex.png"
