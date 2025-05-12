@@ -1,5 +1,7 @@
 import React from "react";
 import SkillIcon from "@/components/SkillIcon";
+import { translations } from "@/lib/i18n";
+import { useLocale } from "@/context/LocaleContext";
 
 const skillsProgrammingLanguages = [
   {
@@ -111,11 +113,14 @@ const skillsOthers = [
 ];
 
 const Skills = () => {
+  const { locale } = useLocale();
+  const t = translations[locale];
+
   return (
     <div className="flex flex-col items-center justify-center lg:items-start lg:justify-start w-full mt-5 lg:mt-0 mx-auto lg:mx-0 lg:max-w-[650px] fade-in border border-gray-600 p-4 rounded-2xl shadow-[0_0_20px_rgba(100,100,100,0.4)] lg:border-none lg:shadow-none lg:p-0">
-      <h2 className="text-3xl font-semibold mb-5">Skills</h2>
+      <h2 className="text-3xl font-semibold mb-5">{t.skills.header}</h2>
       <div className="skill-container">
-        <h3 className="skill-header">Programming Languages</h3>
+        <h3 className="skill-header">{t.skills.programming}</h3>
         <div className="skills-list">
           {skillsProgrammingLanguages.map((skill) => (
             <SkillIcon key={skill.name} {...skill} />
@@ -123,7 +128,7 @@ const Skills = () => {
         </div>
       </div>
       <div className="skill-container">
-        <h3 className="skill-header">Frontend</h3>
+        <h3 className="skill-header">{t.skills.frontend}</h3>
         <div className="skills-list">
           {skillsFrontend.map((skill) => (
             <SkillIcon key={skill.name} {...skill} />
@@ -131,7 +136,7 @@ const Skills = () => {
         </div>
       </div>
       <div className="skill-container">
-        <h3 className="skill-header">Backend</h3>
+        <h3 className="skill-header">{t.skills.backend}</h3>
         <div className="skills-list">
           {skillsBackend.map((skill) => (
             <SkillIcon key={skill.name} {...skill} />
@@ -139,7 +144,7 @@ const Skills = () => {
         </div>
       </div>
       <div className="skill-container">
-        <h3 className="skill-header">DBMS</h3>
+        <h3 className="skill-header">{t.skills.databases}</h3>
         <div className="skills-list">
           {skillsDatabases.map((skill) => (
             <SkillIcon key={skill.name} {...skill} />
@@ -147,7 +152,7 @@ const Skills = () => {
         </div>
       </div>
       <div className="skill-container">
-        <h3 className="skill-header">DevOps</h3>
+        <h3 className="skill-header">{t.skills.devops}</h3>
         <div className="skills-list">
           {skillsDevOps.map((skill) => (
             <SkillIcon key={skill.name} {...skill} />
@@ -155,7 +160,7 @@ const Skills = () => {
         </div>
       </div>
       <div className="skill-container">
-        <h3 className="skill-header">AI/ML</h3>
+        <h3 className="skill-header">{t.skills.ai}</h3>
         <div className="skills-list">
           {skillsMachineLearning.map((skill) => (
             <SkillIcon key={skill.name} {...skill} />
@@ -163,7 +168,7 @@ const Skills = () => {
         </div>
       </div>
       <div className="skill-container">
-        <h3 className="skill-header">Others</h3>
+        <h3 className="skill-header">{t.skills.others}</h3>
         <div className="skills-list">
           {skillsOthers.map((skill) => (
             <SkillIcon key={skill.name} {...skill} />

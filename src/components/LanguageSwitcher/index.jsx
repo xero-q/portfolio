@@ -9,13 +9,8 @@ const LanguageSwitcher = () => {
 
   const switchLocale = (newLocale) => {
     if (newLocale === locale) return;
-    setLocale(newLocale);
-
-    const segments = pathname.split("/");
-    segments[1] = newLocale;
-    const newPath = segments.join("/");
-
-    router.push(newPath);
+    const newPath = pathname.replace(/^\/[a-z]{2}/, `/${newLocale}`);
+    router.replace(newPath);
   };
 
   return (
