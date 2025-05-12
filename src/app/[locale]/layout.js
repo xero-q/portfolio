@@ -1,14 +1,17 @@
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 import Head from "next/head";
-import "./globals.css";
+import "@/app/globals.css";
+import { LocaleProvider } from "@/context/LocaleContext";
 
 export const metadata = {
   title: "Portfolio - Aníbal Sánchez Numa",
   description: "Personal website of Aníbal Sánchez Numa"
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, params }) {
+  const { locale } = params;
+
   return (
     <html lang="en">
       <Head>
@@ -32,8 +35,7 @@ export default function RootLayout({ children }) {
     });
   `}
         </Script>
-
-        {children}
+        <LocaleProvider locale={locale}>{children}</LocaleProvider>
         <Analytics />
       </body>
     </html>

@@ -1,30 +1,28 @@
 import React from "react";
+import { translations } from "@/lib/i18n";
+import { useLocale } from "@/context/LocaleContext";
 
 const AboutMe = () => {
+  const { locale } = useLocale();
+  const t = translations[locale];
+
   return (
     <div className="flex flex-col items-center justify-center lg:items-start w-full fade-in lg:max-w-[650px] border border-gray-600 p-4 rounded-2xl shadow-[0_0_20px_rgba(100,100,100,0.4)] lg:border-none lg:shadow-none lg:p-0">
-      <h2 className="text-3xl font-semibold mb-5">About me</h2>
+      <h2 className="text-3xl font-semibold mb-5">{t.aboutme.header}</h2>
       <div className="font-semibold text-center lg:text-left mb-5">
-        I'm a developer with more than 11 years of experience working on web
-        apps and sites, having worked also with bots and AI/ML. I have developed
-        software using PHP, .NET, JavaScript/TypeScript and Python, leveraging
-        libraries and frameworks such as Angular, React.js, Next.js, NestJS,
-        ASP.NET, Django, FastAPI, Yii2, and Laravel. I have experience with
-        various database management systems, including PostgreSQL, MySQL,
-        MongoDB, Redis and SQLite, as well as cloud providers like AWS and
-        Google Cloud. Additionally, I have experience in Machine Learning using
-        scikit-learn and PyTorch, working on regression and classification
-        tasks.{" "}
+        {t.aboutme.body}
       </div>
-      <h3 className="text-2xl font-semibold mb-5">Education</h3>
+      <h3 className="text-2xl font-semibold mb-5">
+        {t.aboutme.education.header}
+      </h3>
       <div className="font-semibold text-center lg:text-left">
-        <p>University of Ciego de Avila, Cuba</p>
+        <p>{t.aboutme.education.university}</p>
         <p className="mb-2">
-          <i>Computer Engineer</i> (2012)
+          <i>{t.aboutme.education.degree}</i> (2012)
         </p>
-        <p>University of Ciego de Avila, Cuba</p>
+        <p>{t.aboutme.education.university}</p>
         <p>
-          <i>Master's in Applied Informatics</i> (2014)
+          <i>{t.aboutme.education.master}</i> (2014)
         </p>{" "}
       </div>
     </div>
