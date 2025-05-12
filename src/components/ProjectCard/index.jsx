@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import ImageModal from "@/components/ImageModal";
+import { translations } from "@/lib/i18n";
+import { useLocale } from "@/context/LocaleContext";
 
 const ProjectCard = ({ description, link, imgUrl }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { locale } = useLocale();
+  const t = translations[locale];
 
   return (
     <div className="bg-gradient-to-br from-green-50 to-indigo-100 shadow-xl rounded-2xl p-6 flex flex-col items-center text-center">
@@ -23,7 +27,7 @@ const ProjectCard = ({ description, link, imgUrl }) => {
         target="_blank"
         className="text-blue-400 font-semibold hover:underline text-sm"
       >
-        View Project →
+        {t.projects.view} →
       </a>
       <ImageModal
         isOpen={isModalOpen}

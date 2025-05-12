@@ -2,25 +2,29 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-
-const contactSchema = z.object({
-  name: z
-    .string({ required_error: "Name is required" })
-    .min(1, "Name is required")
-    .max(100, "Your name can not exceed 100 characters"),
-  email: z
-    .string({ required_error: "Email is required" })
-    .min(1, "Email is required")
-    .max(300, "Your email can not exceed 300 characters")
-    .email("Invalid email address"),
-  message: z
-    .string({ required_error: "Message is required" })
-    .min(1, "Message is required")
-    .max(2000, "Your message can not exceed 2000 characters.")
-});
+import { translations } from "@/lib/i18n";
+import { useLocale } from "@/context/LocaleContext";
 
 export default function ContactForm() {
   const [status, setStatus] = useState("");
+  const { locale } = useLocale();
+  const t = translations[locale];
+
+  const contactSchema = z.object({
+    name: z
+      .string({ required_error: t.contact.name_required })
+      .min(1, t.contact.name_required)
+      .max(100),
+    email: z
+      .string({ required_error: t.contact.email_required })
+      .min(1, t.contact.email_required)
+      .max(300)
+      .email(t.contact.email_invalid),
+    message: z
+      .string({ required_error: t.contact.message_required })
+      .min(1, t.contact.message_required)
+      .max(2000)
+  });
 
   const {
     register,
@@ -40,11 +44,14 @@ export default function ContactForm() {
         body: JSON.stringify(data)
       });
 
-      const result = await res.json();
-      setStatus(result.message);
-      reset();
+      if (res.ok) {
+        setStatus(t.contact.success);
+        reset();
+      } else {
+        setStatus(t.contact.error);
+      }
     } catch (err) {
-      setStatus("Something went wrong.");
+      setStatus(t.contact.error);
     } finally {
       setTimeout(() => setStatus(""), 3000);
     }
@@ -53,15 +60,12 @@ export default function ContactForm() {
   return (
     <div className="w-full flex justify-center mx-auto p-4 lg:p-6 border border-gray-600 rounded-2xl shadow-[0_0_20px_rgba(100,100,100,0.4)] lg:max-w-[1390px]">
       <form onSubmit={handleSubmit(onSubmit)} className="max-w-xl">
-        <h2 className="text-3xl font-semibold">Contact me</h2>
-        <h3 className="mt-1">
-          If you want to contact me for any job opportunity or inquiry, please
-          leave me a message.
-        </h3>
+        <h2 className="text-3xl font-semibold">{t.contact.header}</h2>
+        <h3 className="mt-1">{t.contact.body}</h3>
 
         <div>
           <label className="block text-sm font-medium" htmlFor="name">
-            Name: <span className="text-red-400">*</span>
+            {t.contact.name} <span className="text-red-400">*</span>
           </label>
           <input
             type="text"
@@ -80,7 +84,7 @@ export default function ContactForm() {
 
         <div>
           <label className="block text-sm font-medium" htmlFor="email">
-            Email: <span className="text-red-400">*</span>
+            {t.contact.email} <span className="text-red-400">*</span>
           </label>
           <input
             type="text"
@@ -99,7 +103,8 @@ export default function ContactForm() {
 
         <div>
           <label className="block text-sm font-medium" htmlFor="message">
-            Message: <span className="text-red-400">*</span>
+            {t.contact.message}
+            <span className="text-red-400">*</span>
           </label>
           <textarea
             rows={10}
@@ -121,7 +126,7 @@ export default function ContactForm() {
           disabled={isSubmitting}
           className="w-full py-2 px-4 bg-blue-400 text-white cursor-pointer font-semibold rounded-md hover:bg-indigo-700 transition disabled:opacity-50"
         >
-          {isSubmitting ? "Sending..." : "Send Message"}
+          {isSubmitting ? t.contact.sending : t.contact.submit}
         </button>
 
         {status && <p className="text-sm text-center mt-2">{status}</p>}

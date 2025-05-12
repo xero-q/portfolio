@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import ImageModal from "@/components/ImageModal";
+import { translations } from "@/lib/i18n";
+import { useLocale } from "@/context/LocaleContext";
 
 const CertificationCard = ({
   title,
@@ -10,6 +12,8 @@ const CertificationCard = ({
   imgUrl
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { locale } = useLocale();
+  const t = translations[locale];
 
   return (
     <div className="bg-gradient-to-br from-indigo-100 to-green-50 shadow-xl rounded-2xl p-6 flex flex-col items-center text-center">
@@ -25,13 +29,15 @@ const CertificationCard = ({
         {title}
       </h3>
       <p className="text-gray-800 text-sm mb-2">{organization}</p>
-      <p className="text-gray-800 text-xs mb-4">Issued: {issueDate}</p>
+      <p className="text-gray-800 text-xs mb-4">
+        {t.certifications.issued}: {issueDate}
+      </p>
       <a
         href={link}
         target="_blank"
         className="text-blue-400 font-semibold hover:underline text-sm"
       >
-        View Credential →
+        {t.certifications.view} →
       </a>
       <ImageModal
         isOpen={isModalOpen}

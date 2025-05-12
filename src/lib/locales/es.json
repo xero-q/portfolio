@@ -1,0 +1,52 @@
+{
+    "greeting":"Hola, soy Aníbal Sánchez",
+    "title":"Ingeniero de Software Senior",
+    "aboutme":{
+        "header":"Sobre mí",
+        "body":"Soy un desarrollador con más de 11 años de experiencia en aplicaciones y sitios web, con experiencia en bots e IA/ML. He desarrollado software con PHP, .NET, JavaScript/TypeScript y Python, utilizando bibliotecas y frameworks como Angular, React.js, Next.js, NestJS, ASP.NET, Django, FastAPI, Yii2 y Laravel. Tengo experiencia con diversos sistemas de gestión de bases de datos, como PostgreSQL, MySQL, MongoDB, Redis y SQLite, así como con proveedores de servicios en la nube como AWS y Google Cloud. Además, tengo experiencia en aprendizaje automático con scikit-learn y PyTorch, trabajando en tareas de regresión y clasificación.",
+        "education":{
+            "header":"Educación",
+            "university":"Universidad de Ciego de Ávila, Cuba",
+            "degree":"Ingeniero Informático",
+            "master":"Máster en Informática Aplicada"
+        }
+        
+    },
+    "skills":{
+        "header":"Habilidades",
+        "programming":"Lenguajes de Programación",
+        "frontend":"Frontend",
+        "backend":"Backend",
+        "databases":"SGBD",
+        "devops":"DevOps",
+       "ai":"IA/ML",
+       "others":"Otros"
+    },
+    "certifications":{
+        "header":"Certificaciones & Cursos",
+        "issued":"Emitido",
+        "view":"Ver Credencial",
+        "issued_dates":["Dic 2023","Dic 2023","Sep 2023","Abr 2022","Abr 2022","Oct 2021"]
+    },
+    "projects":{
+        "header":"Proyectos",
+        "view":"Ver Proyecto",
+        "descriptions":["Website de OpsTalent","Website de Dspot","Plataforma de tickets de Lanetalk","Web admin de Lanetalk","Puntuación en vivo de Lanetalk","Website de Afrimed","Portal de MIPs de MakerDAO","Construex: El Marketplace de Construcción, Industria y Diseño"]
+    } ,
+    "contact":{
+        "header":"Contáctame",
+        "body":"Si desea contactarme para una oportunidad de trabajo o consulta, por favor déjeme un mensaje.",
+        "name":"Nombre:",
+        "email":"Email:",
+        "message":"Mensaje:",
+        "name_required":"El nombre es requerido",
+        "email_required":"El email es requerido",
+        "message_required":"El mensaje es requerido",
+        "email_invalid":"Dirección de email inválida",
+        "submit":"Enviar Mensaje",
+        "success":"Mensaje enviado exitosamente!",
+        "error":"Algo salió mal",
+        "sending":"Enviando..."
+        
+    }    
+}

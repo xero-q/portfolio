@@ -1,0 +1,53 @@
+{
+    "greeting":"Hi, I'm Aníbal Sánchez",
+    "title":"Senior Software Engineer",
+    "aboutme":{
+        "header":"About me",
+        "body":"I'm a developer with more than 11 years of experience working on web apps and sites, having worked also with bots and AI/ML. I have developed software using PHP, .NET, JavaScript/TypeScript and Python, leveraging libraries and frameworks such as Angular, React.js, Next.js, NestJS, ASP.NET, Django, FastAPI, Yii2, and Laravel. I have experience with various database management systems, including PostgreSQL, MySQL, MongoDB, Redis and SQLite, as well as cloud providers like AWS and Google Cloud. Additionally, I have experience in Machine Learning using scikit-learn and PyTorch, working on regression and classification tasks.",
+        "education":{
+            "header":"Education",
+            "university":"University of Ciego de Avila, Cuba",
+            "degree":"Computer Engineer",
+            "master":"Master's in Applied Informatics"
+        }
+        
+    },
+    "skills":{
+        "header":"Skills",
+        "programming":"Programming Languages",
+        "frontend":"Frontend",
+        "backend":"Backend",
+        "databases":"DBMS",
+        "devops":"DevOps",
+       "ai":"AI/ML",
+       "others":"Others"
+    },
+    "certifications":{
+        "header":"Certifications & Courses",
+        "issued":"Issued",
+        "view":"View Credential",
+        "issued_dates":["Dec 2023","Dec 2023","Sep 2023","Apr 2022","Apr 2022","Oct 2021"]
+    } ,
+    "projects":{
+        "header":"Projects",
+        "view":"View Project",
+        "descriptions":["OpsTalent company website","Dspot company website","Lanetalk company tickets platform","Lanetalk company web admin","Lanetalk company live score","Afrimed company website","MakerDAO MIPs Portal","Construex: Building, industry and design marketplace"]
+    },
+    "contact":{
+        "header":"Contact me",
+        "body":"If you want to contact me for any job opportunity or inquiry, please leave me a message.",
+        "name":"Name:",
+        "email":"Email:",
+        "message":"Message:",
+        "name_required":"Name is required",
+        "email_required":"Email is required",
+        "message_required":"Message is required",
+        "email_invalid":"Invalid email address",
+        "submit":"Send Message",
+        "success":"Message sent successfully!",
+        "error":"Something went wrong",
+        "sending":"Sending..."
+        
+    }
+
+}

@@ -8,6 +8,7 @@ import { useState } from "react";
 import ContactForm from "@/components/ContactForm";
 import Certifications from "@/components/Certifications";
 import Projects from "@/components/Projects";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export default function Home() {
   const [showBody, setShowBody] = useState(false);
@@ -15,6 +16,7 @@ export default function Home() {
     <div className="flex flex-col">
       <main className="flex-1">
         <div className="mx-auto flex flex-col justify-center w-full px-4">
+          <LanguageSwitcher />
           <Hero onDisplayed={() => setShowBody(true)} />
           {showBody && (
             <>
