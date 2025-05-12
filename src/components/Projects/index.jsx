@@ -18,6 +18,16 @@ const projects = [
     imgUrl: "/assets/projects/tickets.png"
   },
   {
+    description: "Lanetalk company web admin",
+    link: "https://admin.lanetalk.com",
+    imgUrl: "/assets/projects/admin-lanetalk.png"
+  },
+  {
+    description: "Lanetalk company live score",
+    link: "https://livescore.lanetalk.com",
+    imgUrl: "/assets/projects/livescore-lanetalk.png"
+  },
+  {
     description: "Afrimed company website",
     link: "https://afrimedtelehealth.com/",
     imgUrl: "/assets/projects/afrimed.png"
