@@ -1,6 +1,5 @@
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
-import Head from "next/head";
 import "@/app/globals.css";
 import { LocaleProvider } from "@/context/LocaleContext";
 import { SUPPORTED_LOCALES, DEFAULT_LOCALE } from "@/lib/constants";
@@ -18,7 +17,7 @@ export default async function RootLayout({ children, params }) {
 
   return (
     <html lang={correctLocale}>
-      <Head>
+      <head>
         <meta
           name="keywords"
           content="software, Cuban, Aníbal, Sánchez, Numa, developer, web, frontend, backend, fullstack, software developer, software engineer, frontend developer, backend developer,fullstack developer"
@@ -33,7 +32,7 @@ export default async function RootLayout({ children, params }) {
           hrefLang="es"
           href="https://www.anibalnuma.com/es"
         />
-      </Head>
+      </head>
       <body>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-YJFQW7M4E5"
