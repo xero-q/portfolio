@@ -30,7 +30,7 @@ const Hero = ({ onDisplayed }) => {
         alt="Aníbal Sánchez Numa"
         width={220}
         height={220}
-        className="rounded-full object-cover mb-2 fade-in"
+        className="rounded-full object-cover mb-2 fade-in  border border-gray-600 shadow-[0_0_20px_rgba(100,100,100,0.6)]"
       />
       <div className="text-2xl font-semibold mb-2">
         <TypewriterText text={t.greeting} onComplete={handleCompleteText} />
