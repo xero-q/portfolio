@@ -31,7 +31,7 @@
     "projects":{
         "header":"Proyectos",
         "view":"Ver Proyecto",
-        "descriptions":["Website de OpsTalent","Website de Dspot","Plataforma de tickets de Lanetalk","Web admin de Lanetalk","Puntuación en vivo de Lanetalk","Website de Afrimed","Portal de MIPs de MakerDAO","Construex: El Marketplace de Construcción, Industria y Diseño"]
+        "descriptions":["Sitio web de la empresa OpsTalent","Sitio web de la empresa Dspot","Plataforma de tickets de la empresa Lanetalk","Admin web de la empresa Lanetalk","Puntuación en vivo de la empresa Lanetalk","Sitio web de la empresa Afrimed","Portal de MIPs de la empresa MakerDAO","Construex: El Marketplace de Construcción, Industria y Diseño"]
     } ,
     "contact":{
         "header":"Contáctame",
