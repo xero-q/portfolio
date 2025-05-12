@@ -10,7 +10,9 @@ export const useLocale = () => useContext(LocaleContext);
 
 // Provider component
 export const LocaleProvider = ({ children, locale: initialLocale }) => {
-  const [locale, setLocale] = useState(initialLocale || "en");
+  const [locale, setLocale] = useState(
+    ["en", "es"].includes(initialLocale) ? initialLocale : "en"
+  );
 
   return (
     <LocaleContext.Provider value={{ locale, setLocale }}>

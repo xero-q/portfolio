@@ -1,17 +1,23 @@
 import { useLocale } from "@/context/LocaleContext";
 import { usePathname, useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 
 const LanguageSwitcher = () => {
   const { locale, setLocale } = useLocale();
   const pathname = usePathname();
   const router = useRouter();
 
-  const switchLocale = (newLocale) => {
-    if (newLocale === locale) return;
+  const switchLocale = (newLocale, force = false) => {
+    if (newLocale === locale && !force) return;
     const newPath = pathname.replace(/^\/[a-z]{2}/, `/${newLocale}`);
     router.replace(newPath);
   };
+
+  useEffect(() => {
+    if (!["/en", "/es"].includes(pathname)) {
+      switchLocale("en", true);
+    }
+  }, [pathname]);
 
   return (
     <div className="flex justify-center items-center space-x-2 bg-transparent w-fit mx-auto">
