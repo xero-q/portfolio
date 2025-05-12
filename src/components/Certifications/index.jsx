@@ -49,7 +49,7 @@ const certifications = [
 const Certifications = () => {
   return (
     <div className="section-container">
-      <h2 className="section-header">Certifications</h2>
+      <h2 className="section-header">Certifications & Courses</h2>
       <div className="section-body">
         {certifications.map((certification, index) => (
           <CertificationCard {...certification} key={index} />
