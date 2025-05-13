@@ -45,6 +45,18 @@ const LanguageSwitcher = () => {
           className="w-8 h-8 rounded-full"
         />
       </button>
+
+      <button
+        className="w-12 h-12 rounded-full flex justify-center items-center shadow-md hover:scale-105 transition-transform cursor-pointer"
+        aria-label="Español"
+        onClick={() => switchLocale("fr")}
+      >
+        <img
+          src="/assets/flags/france.svg"
+          alt="France Flag"
+          className="w-8 h-8 rounded-full"
+        />
+      </button>
     </div>
   );
 };
