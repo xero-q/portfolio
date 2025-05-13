@@ -35,6 +35,11 @@ export default async function RootLayout({ children, params }) {
           hrefLang="es"
           href="https://www.anibalnuma.com/es"
         />
+        <link
+          rel="alternate"
+          hrefLang="fr"
+          href="https://www.anibalnuma.com/fr"
+        />
       </head>
       <body>
         <Script
