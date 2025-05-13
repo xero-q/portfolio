@@ -4,6 +4,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { translations } from "@/lib/i18n";
 import { useLocale } from "@/context/LocaleContext";
+import emojiRegex from "emoji-regex";
+
+const regexEmoji = emojiRegex();
 
 export default function ContactForm() {
   const [status, setStatus] = useState("");
@@ -14,7 +17,10 @@ export default function ContactForm() {
     name: z
       .string({ required_error: t.contact.name_required })
       .min(1, t.contact.name_required)
-      .max(100),
+      .max(100)
+      .refine((val) => !regexEmoji.test(val), {
+        message: t.contact.emojis_not_allowed
+      }),
     email: z
       .string({ required_error: t.contact.email_required })
       .min(1, t.contact.email_required)
@@ -23,7 +29,10 @@ export default function ContactForm() {
     subject: z
       .string({ required_error: t.contact.subject_required })
       .min(1, t.contact.subject_required)
-      .max(300),
+      .max(300)
+      .refine((val) => !regexEmoji.test(val), {
+        message: t.contact.emojis_not_allowed
+      }),
     message: z
       .string({ required_error: t.contact.message_required })
       .min(1, t.contact.message_required)

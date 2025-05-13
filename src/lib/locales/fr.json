@@ -49,6 +49,7 @@
     "subject": "Sujet :",
     "message": "Message :",
     "name_required": "Le nom est requis",
+    "emojis_not_allowed":"Aucun émoji autorisé",
     "email_required": "L'email est requis",
     "subject_required": "Le sujet est requis",
     "message_required": "Le message est requis",

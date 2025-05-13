@@ -41,6 +41,7 @@
         "subject":"Asunto:",
         "message":"Mensaje:",
         "name_required":"El nombre es requerido",
+        "emojis_not_allowed":"No se permiten emojis",
         "email_required":"El email es requerido",
         "subject_required":"El asunto es requerido",
         "message_required":"El mensaje es requerido",
