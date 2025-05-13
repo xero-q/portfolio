@@ -19,7 +19,11 @@ export default function TypewriterText({ text, speed = 100, onComplete }) {
   }, [index, text, speed, onComplete]);
 
   return (
-    <h1 className={`typewriter ", ${showCursor ? "with-cursor" : ""}`}>
+    <h1
+      className={`typewriter text-center w-full", ${
+        showCursor ? "with-cursor" : ""
+      }`}
+    >
       {text.slice(0, index)}
     </h1>
   );
