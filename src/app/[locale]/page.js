@@ -33,7 +33,7 @@ export default function Home() {
         </div>
       </main>
       {showBody && (
-        <footer className="h-[100px] bg-gray-900 text-white flex justify-center items-center">
+        <footer className="h-[100px] bg-gray-900 text-white flex justify-center items-center max-w-full px-2">
           <Footer />
         </footer>
       )}
