@@ -39,6 +39,18 @@ const certifications = [
     organization: "Udemy",
     link: "https://www.udemy.com/certificate/UC-48964cd6-7018-43a4-8569-8612ff9f579f/",
     imgUrl: "/assets/certifications/nextjs-udemy.jpg"
+  },
+  {
+    title: "Angular (Intermediate)",
+    organization: "HackerRank",
+    link: "https://www.hackerrank.com/certificates/62615ac44828",
+    imgUrl: "/assets/certifications/angular-intermediate.jpg"
+  },
+  {
+    title: "Angular (Basic)",
+    organization: "HackerRank",
+    link: "https://www.hackerrank.com/certificates/22197f798390",
+    imgUrl: "/assets/certifications/angular-basic.jpg"
   }
 ];
 
