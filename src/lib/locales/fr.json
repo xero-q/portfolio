@@ -50,6 +50,7 @@
     "message": "Message :",
     "name_required": "Le nom est requis",
     "emojis_not_allowed":"Aucun émoji autorisé",
+     "only_letters_spaces_allowed":"Seules les lettres et les espaces sont autorisés",
     "email_required": "L'email est requis",
     "subject_required": "Le sujet est requis",
     "message_required": "Le message est requis",
@@ -58,5 +59,6 @@
     "success": "Message envoyé avec succès !",
     "error": "Une erreur s'est produite",
     "sending": "Envoi en cours..."
+   
   }
 }

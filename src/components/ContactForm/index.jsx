@@ -7,6 +7,7 @@ import { useLocale } from "@/context/LocaleContext";
 import emojiRegex from "emoji-regex";
 
 const regexEmoji = emojiRegex();
+const regexLettersSpaces = /^[\p{L} ]+$/u;
 
 export default function ContactForm() {
   const [status, setStatus] = useState("");
@@ -20,6 +21,9 @@ export default function ContactForm() {
       .max(100)
       .refine((val) => !regexEmoji.test(val), {
         message: t.contact.emojis_not_allowed
+      })
+      .refine((val) => regexLettersSpaces.test(val), {
+        message: t.contact.only_letters_spaces_allowed
       }),
     email: z
       .string({ required_error: t.contact.email_required })

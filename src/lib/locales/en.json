@@ -42,6 +42,7 @@
         "message":"Message:",
         "name_required":"Name is required",
         "emojis_not_allowed":"Emojis are not allowed",
+        "only_letters_spaces_allowed":"Only letters and spaces are allowed",
         "email_required":"Email is required",
         "subject_required":"Subject is required",
         "message_required":"Message is required",
@@ -50,7 +51,6 @@
         "success":"Message sent successfully!",
         "error":"Something went wrong",
         "sending":"Sending..."
-        
+       
     }
-
 }
