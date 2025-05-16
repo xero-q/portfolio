@@ -5,7 +5,13 @@ import { useLocale } from "@/context/LocaleContext";
 
 const certifications = [
   {
-    title: "SQL(Intermediate)",
+    title: "SQL (Advanced)",
+    organization: "HackerRank",
+    link: "https://www.hackerrank.com/certificates/72ebf9df290c",
+    imgUrl: "/assets/certifications/sql-advanced.png"
+  },
+  {
+    title: "SQL (Intermediate)",
     organization: "HackerRank",
     link: "https://www.hackerrank.com/certificates/e3b09fa32d06",
     imgUrl: "/assets/certifications/sql-intermediate.png"
