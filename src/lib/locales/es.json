@@ -34,7 +34,7 @@
         "descriptions":["Sitio web de la empresa OpsTalent","Sitio web de la empresa Dspot","Plataforma de tickets de la empresa Lanetalk","Admin web de la empresa Lanetalk","Puntuación en vivo de la empresa Lanetalk","Sitio web de la empresa Afrimed","Portal de MIPs de la empresa MakerDAO","Construex: El Marketplace de Construcción, Industria y Diseño"]
     } ,
     "contact":{
-        "header":"Contáctame",
+        "header":"Contácteme",
         "body":"Si desea contactarme para una oportunidad de trabajo o consulta, por favor déjeme un mensaje.",
         "name":"Nombre:",
         "email":"Email:",
