@@ -26,7 +26,7 @@
         "header":"Certificaciones & Cursos",
         "issued":"Emitido",
         "view":"Ver Credencial",
-        "issued_dates":["May 2025", "May 2025","Dic 2023","Dic 2023","Sep 2023","Abr 2022","Abr 2022","Oct 2021","Abr 2021","Abr 2021"]
+        "issued_dates":["May 2025","May 2025", "May 2025","Dic 2023","Dic 2023","Sep 2023","Abr 2022","Abr 2022","Oct 2021","Abr 2021","Abr 2021"]
     },
     "projects":{
         "header":"Proyectos",
@@ -48,7 +48,7 @@
         "message_required":"El mensaje es requerido",
         "email_invalid":"Dirección de email inválida",
         "submit":"Enviar Mensaje",
-        "success":"Mensaje enviado exitosamente!",
+        "success":"¡Mensaje enviado exitosamente!",
         "error":"Algo salió mal",
         "sending":"Enviando..."        
         

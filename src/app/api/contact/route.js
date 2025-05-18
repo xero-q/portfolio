@@ -2,12 +2,22 @@ import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { escapeHTML } from "@/lib/functions";
+import emojiRegex from "emoji-regex";
+
+const regexLettersSpaces = /^[\p{L} ]+$/u;
+const regexEmoji = emojiRegex();
 
 const contactSchema = z.object({
   name: z
     .string()
     .min(1, "Name is required")
-    .max(100, "Your name can not exceed 100 characters"),
+    .max(100, "Your name can not exceed 100 characters")
+    .refine((val) => !regexEmoji.test(val), {
+      message: "Emojis are not allowed"
+    })
+    .refine((val) => regexLettersSpaces.test(val), {
+      message: "Only letters and spaces are allowed"
+    }),
   email: z
     .string()
     .min(1, "Email is required")
