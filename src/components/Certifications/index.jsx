@@ -5,6 +5,12 @@ import { useLocale } from "@/context/LocaleContext";
 
 const certifications = [
   {
+    title: "Software Engineer",
+    organization: "HackerRank",
+    link: "https://www.hackerrank.com/certificates/63aa355cbd7d",
+    imgUrl: "/assets/certifications/software-engineer.png"
+  },
+  {
     title: "Python (Basic)",
     organization: "HackerRank",
     link: "https://www.hackerrank.com/certificates/7eed42bca010",
