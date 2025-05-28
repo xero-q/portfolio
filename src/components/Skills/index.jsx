@@ -18,6 +18,11 @@ const skillsProgrammingLanguages = [
     name: "Python",
     src: "/assets/logos/python.svg",
     size: 30
+  },
+  {
+    name: "C#",
+    src: "/assets/logos/csharp.svg",
+    size: 30
   }
 ];
 
