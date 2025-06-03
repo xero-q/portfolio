@@ -52,9 +52,8 @@ const skillsBackend = [
     size: 60
   },
   {
-    name: "FastAPI",
-    src: "/assets/logos/fastapi.svg",
-    size: 80
+    name: "ASP.NET Core",
+    src: "/assets/logos/aspnetcore.svg"
   }
 ];
 
