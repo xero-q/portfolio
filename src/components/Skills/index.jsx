@@ -81,6 +81,10 @@ const skillsDatabases = [
     name: "Redis",
     src: "/assets/logos/redis.svg",
     size: 90
+  },
+  {
+    name: "SQL Server",
+    src: "/assets/logos/sqlserver.svg"
   }
 ];
 
