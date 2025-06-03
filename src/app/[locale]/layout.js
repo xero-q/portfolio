@@ -3,6 +3,7 @@ import Script from "next/script";
 import "@/app/globals.css";
 import { LocaleProvider } from "@/context/LocaleContext";
 import { SUPPORTED_LOCALES, DEFAULT_LOCALE } from "@/lib/constants";
+import { headers } from "next/headers";
 
 export const metadata = {
   title: "Portfolio - Aníbal Sánchez Numa",
@@ -16,6 +17,13 @@ export default async function RootLayout({ children, params }) {
     ? locale
     : DEFAULT_LOCALE;
 
+  const headersList = headers();
+  const host = headersList.get("host");
+  const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
+  const pathname = headersList.get("x-next-url") || `/${correctLocale}`;
+
+  const canonicalUrl = `${protocol}://${host}${pathname}`;
+
   return (
     <html lang={correctLocale}>
       <head>
@@ -23,7 +31,7 @@ export default async function RootLayout({ children, params }) {
           name="keywords"
           content="software, Cuban, Aníbal, Sánchez, Numa, developer, web, frontend, backend, fullstack, software developer, software engineer, frontend developer, backend developer,fullstack developer"
         />
-        <link rel="canonical" href="https://www.anibalnuma.com" />
+        <link rel="canonical" href={canonicalUrl} />
 
         <link
           rel="alternate"
