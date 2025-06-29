@@ -7,12 +7,12 @@ const skillsProgrammingLanguages = [
   {
     name: "JavaScript",
     src: "/assets/logos/javascript.svg",
-    size: 20
+    size: 30
   },
   {
     name: "TypeScript",
     src: "/assets/logos/typescript.svg",
-    size: 20
+    size: 30
   },
   {
     name: "Python",

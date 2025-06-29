@@ -10,7 +10,7 @@ const SkillIcon = ({ name, src, size = 40 }) => {
           alt={name}
           width={size}
           height={size}
-          className="object-contain"
+          className="object-cover"
         />
       </div>
       <span className="skill-badge">{name}</span>
