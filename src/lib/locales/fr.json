@@ -3,7 +3,7 @@
   "title": "Ingénieur Logiciel Senior",
   "aboutme": {
     "header": "À propos de moi",
-    "body": "Je suis développeur avec plus de 13 ans d'expérience dans le développement d'applications et de sites web, ayant également travaillé avec des bots et l'IA/ML. J'ai développé des logiciels en utilisant PHP, .NET, JavaScript/TypeScript et Python, en tirant parti de bibliothèques et frameworks tels qu'Angular, React.js, Next.js, NestJS, ASP.NET, Django, FastAPI, Yii2 et Laravel. J'ai de l'expérience avec divers systèmes de gestion de bases de données, y compris PostgreSQL, MySQL, MongoDB, Redis et SQLite, ainsi qu'avec des fournisseurs cloud comme AWS et Google Cloud. En outre, j'ai de l'expérience en apprentissage automatique avec scikit-learn et PyTorch, en travaillant sur des tâches de régression et de classification.",
+    "body": "Je suis développeur avec plus de 13 ans d'expérience dans le développement d'applications et de sites web, ayant également travaillé avec des bots et l'IA/ML. J'ai développé des logiciels en utilisant PHP, .NET, JavaScript/TypeScript et Python, en tirant parti de bibliothèques et frameworks tels qu'Angular, React.js, Next.js, NestJS, ASP.NET, Django, FastAPI, Yii2 et Laravel. J'ai de l'expérience avec divers systèmes de gestion de bases de données, y compris PostgreSQL, MySQL, SQL Server, MongoDB, Redis et SQLite, ainsi qu'avec des fournisseurs cloud comme AWS et Google Cloud. En outre, j'ai de l'expérience en apprentissage automatique avec scikit-learn et PyTorch, en travaillant sur des tâches de régression et de classification.",
     "education": {
       "header": "Éducation",
       "university": "Université de Ciego de Ávila, Cuba",
