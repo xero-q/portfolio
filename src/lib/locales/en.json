@@ -50,7 +50,9 @@
         "submit":"Send Message",
         "success":"Message sent successfully!",
         "error":"Something went wrong",
-        "sending":"Sending..."
-       
+        "sending":"Sending..."       
+    },
+    "footer":{
+        "github":"Github source code"
     }
 }

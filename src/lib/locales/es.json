@@ -51,6 +51,8 @@
         "success":"¡Mensaje enviado exitosamente!",
         "error":"Algo salió mal",
         "sending":"Enviando..."        
-        
-    }    
+    },
+     "footer":{
+        "github":"Código fuente de Github"
+    }  
 }

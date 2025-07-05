@@ -58,7 +58,9 @@
     "submit": "Envoyer le message",
     "success": "Message envoyé avec succès !",
     "error": "Une erreur s'est produite",
-    "sending": "Envoi en cours..."
-   
-  }
+    "sending": "Envoi en cours..."   
+  },
+  "footer":{
+        "github":"Code source Github"
+    } 
 }
