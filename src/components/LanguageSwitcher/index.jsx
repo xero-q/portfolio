@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { SUPPORTED_LOCALES, DEFAULT_LOCALE } from "@/lib/constants";
 
 const LanguageSwitcher = () => {
-  const { locale, setLocale } = useLocale();
+  const { locale } = useLocale();
   const pathname = usePathname();
   const router = useRouter();
 
