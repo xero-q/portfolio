@@ -102,6 +102,7 @@ const Certifications = ({ t }) => {
         {certifications.map((certification, index) => (
           <CertificationCard
             {...certification}
+            t={t}
             issueDate={t.certifications.issued_dates[index]}
             key={index}
           />

@@ -1,8 +1,15 @@
 "use client";
 
+import React from "react";
 import { useEffect, useState } from "react";
 
-export default function TypewriterText({ text, speed = 100, onComplete }) {
+interface TypewriterTextProps {
+  text: string;
+  speed?:number;
+  onComplete:()=>void;
+}
+
+export default function TypewriterText({ text, speed = 100, onComplete }: TypewriterTextProps) {
   const [index, setIndex] = useState(0);
   const [showCursor, setShowCursor] = useState(true);
 

@@ -1,7 +1,5 @@
 import React from "react";
 import SkillIcon from "@/components/SkillIcon";
-import { translations } from "@/lib/i18n";
-import { useLocale } from "@/context/LocaleContext";
 
 const skillsProgrammingLanguages = [
   {

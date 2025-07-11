@@ -5,16 +5,24 @@ import { translations } from "@/lib/i18n";
 import { useLocale } from "@/context/LocaleContext";
 import styles from "./certification-card.module.css";
 
+interface CertificationCardProps {
+  title: string;
+  organization: string;
+  issueDate: string;
+  link: string;
+  imgUrl: string;
+  t: any;
+}
+
 const CertificationCard = ({
   title,
   organization,
   issueDate,
   link,
-  imgUrl
-}) => {
+  imgUrl,
+  t
+}:CertificationCardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { locale } = useLocale();
-  const t = translations[locale];
 
   return (
     <>

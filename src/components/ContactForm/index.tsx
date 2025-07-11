@@ -3,6 +3,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import emojiRegex from "emoji-regex";
+import React from "react";
 
 const regexEmoji = emojiRegex();
 const regexLettersSpaces = /^[\p{L} ]+$/u;
