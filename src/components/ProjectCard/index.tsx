@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import ImageModal from "@/components/ImageModal";
-import { translations } from "@/lib/i18n";
-import { useLocale } from "@/context/LocaleContext";
 import styles from "./project-card.module.css";
 
-const ProjectCard = ({ description, link, imgUrl }) => {
+interface ProjectCardProps {
+  description:string;
+  link:string;
+  imgUrl:string;
+  t: any;
+}
+
+const ProjectCard = ({ description, link, imgUrl,t }: ProjectCardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { locale } = useLocale();
-  const t = translations[locale];
 
   return (
     <>

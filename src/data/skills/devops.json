@@ -1,0 +1,11 @@
+[
+  {
+    "name": "AWS",
+    "src": "/assets/logos/aws.svg"
+  },
+  {
+    "name": "Google Cloud",
+    "src": "/assets/logos/gcp.svg",
+    "size": 90
+  }
+]

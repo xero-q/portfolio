@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Angular",
+    "src": "/assets/logos/angular.svg"
+  },
+  {
+    "name": "React.js",
+    "src": "/assets/logos/react.svg"
+  },
+  {
+    "name": "Next.js",
+    "src": "/assets/logos/next.svg"
+  }
+]

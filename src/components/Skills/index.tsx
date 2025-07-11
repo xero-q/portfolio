@@ -1,122 +1,12 @@
 import React from "react";
 import SkillIcon from "@/components/SkillIcon";
-
-const skillsProgrammingLanguages = [
-  {
-    name: "JavaScript",
-    src: "/assets/logos/javascript.svg",
-    size: 30
-  },
-  {
-    name: "TypeScript",
-    src: "/assets/logos/typescript.svg",
-    size: 30
-  },
-  {
-    name: "Python",
-    src: "/assets/logos/python.svg",
-    size: 30
-  },
-  {
-    name: "C#",
-    src: "/assets/logos/csharp.svg",
-    size: 30
-  }
-];
-
-const skillsFrontend = [
-  {
-    name: "Angular",
-    src: "/assets/logos/angular.svg"
-  },
-  {
-    name: "React.js",
-    src: "/assets/logos/react.svg"
-  },
-  {
-    name: "Next.js",
-    src: "/assets/logos/next.svg"
-  }
-];
-
-const skillsBackend = [
-  {
-    name: "NestJS",
-    src: "/assets/logos/nest.svg"
-  },
-  {
-    name: "Django",
-    src: "/assets/logos/django.png",
-    size: 60
-  },
-  {
-    name: "ASP.NET Core",
-    src: "/assets/logos/aspnetcore.svg"
-  }
-];
-
-const skillsDatabases = [
-  {
-    name: "PostgreSQL",
-    src: "/assets/logos/postgresql.svg"
-  },
-  {
-    name: "MySQL",
-    src: "/assets/logos/mysql.svg",
-    size: 90
-  },
-  {
-    name: "SQLite",
-    src: "/assets/logos/sqlite.svg",
-    size: 90
-  },
-  {
-    name: "MongoDB",
-    src: "/assets/logos/mongodb.svg",
-    size: 90
-  },
-  {
-    name: "Redis",
-    src: "/assets/logos/redis.svg",
-    size: 90
-  },
-  {
-    name: "SQL Server",
-    src: "/assets/logos/sqlserver.svg"
-  }
-];
-
-const skillsDevOps = [
-  {
-    name: "AWS",
-    src: "/assets/logos/aws.svg"
-  },
-  {
-    name: "Google Cloud",
-    src: "/assets/logos/gcp.svg",
-    size: 90
-  }
-];
-
-const skillsMachineLearning = [
-  {
-    name: "Scikit Learn",
-    src: "/assets/logos/sklearn.png"
-  }
-];
-
-const skillsOthers = [
-  {
-    name: "Git",
-    src: "/assets/logos/git.svg",
-    size: 50
-  },
-  {
-    name: "Docker",
-    src: "/assets/logos/docker.svg",
-    size: 70
-  }
-];
+import skillsProgrammingLanguages from "@/data/skills/programming-languages.json";
+import skillsFrontend from "@/data/skills/frontend.json";
+import skillsBackend from "@/data/skills/backend.json";
+import skillsDatabases from "@/data/skills/databases.json";
+import skillsDevOps from "@/data/skills/devops.json";
+import skillsMachineLearning from "@/data/skills/machine-learning.json";
+import skillsOthers from "@/data/skills/others.json";
 
 const Skills = ({ t }) => {
   return (

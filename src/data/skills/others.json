@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Git",
+    "src": "/assets/logos/git.svg",
+    "size": 50
+  },
+  {
+    "name": "Docker",
+    "src": "/assets/logos/docker.svg",
+    "size": 70
+  }
+]

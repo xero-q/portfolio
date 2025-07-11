@@ -1,0 +1,15 @@
+[
+  {
+    "name": "NestJS",
+    "src": "/assets/logos/nest.svg"
+  },
+  {
+    "name": "Django",
+    "src": "/assets/logos/django.png",
+    "size": 60
+  },
+  {
+    "name": "ASP.NET Core",
+    "src": "/assets/logos/aspnetcore.svg"
+  }
+]

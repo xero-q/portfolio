@@ -1,0 +1,30 @@
+[
+  {
+    "name": "PostgreSQL",
+    "src": "/assets/logos/postgresql.svg"
+  },
+  {
+    "name": "MySQL",
+    "src": "/assets/logos/mysql.svg",
+    "size": 90
+  },
+  {
+    "name": "SQLite",
+    "src": "/assets/logos/sqlite.svg",
+    "size": 90
+  },
+  {
+    "name": "MongoDB",
+    "src": "/assets/logos/mongodb.svg",
+    "size": 90
+  },
+  {
+    "name": "Redis",
+    "src": "/assets/logos/redis.svg",
+    "size": 90
+  },
+  {
+    "name": "SQL Server",
+    "src": "/assets/logos/sqlserver.svg"
+  }
+]

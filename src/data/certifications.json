@@ -1,0 +1,92 @@
+[
+  {
+    "title": "C# and .NET",
+    "organization": "TestDome",
+    "link": "https://www.testdome.com/certificates/4367b9ab833e4f8dbd4618da51c7f40e",
+    "imgUrl": "/assets/certifications/csharp-net.png"
+  },
+  {
+    "title": "C# (Basic)",
+    "organization": "HackerRank",
+    "link": "https://www.hackerrank.com/certificates/321ca1f07398",
+    "imgUrl": "/assets/certifications/csharp-basic.png"
+  },
+  {
+    "title": "JavaScript (Intermediate)",
+    "organization": "HackerRank",
+    "link": "https://www.hackerrank.com/certificates/2c1a042e98ae",
+    "imgUrl": "/assets/certifications/javascript-intermediate.png"
+  },
+  {
+    "title": "Software Engineer",
+    "organization": "HackerRank",
+    "link": "https://www.hackerrank.com/certificates/63aa355cbd7d",
+    "imgUrl": "/assets/certifications/software-engineer.png"
+  },
+  {
+    "title": "Python (Basic)",
+    "organization": "HackerRank",
+    "link": "https://www.hackerrank.com/certificates/7eed42bca010",
+    "imgUrl": "/assets/certifications/python-basic.png"
+  },
+  {
+    "title": "SQL (Advanced)",
+    "organization": "HackerRank",
+    "link": "https://www.hackerrank.com/certificates/72ebf9df290c",
+    "imgUrl": "/assets/certifications/sql-advanced.png"
+  },
+  {
+    "title": "SQL (Intermediate)",
+    "organization": "HackerRank",
+    "link": "https://www.hackerrank.com/certificates/e3b09fa32d06",
+    "imgUrl": "/assets/certifications/sql-intermediate.png"
+  },
+  {
+    "title": "Advanced React For Enterprise: React for senior engineers ",
+    "organization": "Udemy",
+    "link": "https://www.udemy.com/certificate/UC-57e9f70d-1cbc-4b43-a3a1-a3e4ee0540d0/",
+    "imgUrl": "/assets/certifications/react-senior-engineers.jpg"
+  },
+  {
+    "title": "EF SET English Certificate 69/100 (C1 Advanced)",
+    "organization": "EF Standard English Test (EF SET)",
+    "link": "https://www.efset.org/cert/fLgHZ1",
+    "imgUrl": "/assets/certifications/ef-set.jpg"
+  },
+  {
+    "title": "Advanced React",
+    "organization": "Coursera",
+    "link": "https://www.coursera.org/account/accomplishments/certificate/NGM4CMMHBEFN",
+    "imgUrl": "/assets/certifications/advanced-react-coursera.jpg"
+  },
+  {
+    "title": "Server-side Development with NodeJS, Express and MongoDB",
+    "organization": "Coursera",
+    "link": "https://www.coursera.org/account/accomplishments/certificate/9L7AFK8HX3F9",
+    "imgUrl": "/assets/certifications/server-side-nodejs.png"
+  },
+  {
+    "title": "Learn Cypress UI test automation with real-time scenarios",
+    "organization": "Coursera",
+    "link": "https://www.coursera.org/account/accomplishments/certificate/VSN52XLXV798",
+    "imgUrl": "/assets/certifications/cypress.png"
+  },
+  {
+    "title": "Next.js & React - The Complete Guide (incl. Two Paths!)",
+    "organization": "Udemy",
+    "link": "https://www.udemy.com/certificate/UC-48964cd6-7018-43a4-8569-8612ff9f579f/",
+    "imgUrl": "/assets/certifications/nextjs-udemy.jpg"
+  },
+  {
+    "title": "Angular (Intermediate)",
+    "organization": "HackerRank",
+    "link": "https://www.hackerrank.com/certificates/62615ac44828",
+    "imgUrl": "/assets/certifications/angular-intermediate.jpg"
+  },
+  {
+    "title": "Angular (Basic)",
+    "organization": "HackerRank",
+    "link": "https://www.hackerrank.com/certificates/22197f798390",
+    "imgUrl": "/assets/certifications/angular-basic.jpg"
+  }
+]
