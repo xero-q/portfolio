@@ -5,15 +5,10 @@ import Image from "next/image";
 import TypewriterText from "@/components/TypewriterText";
 import Socials from "@/components/Socials";
 import { useState } from "react";
-import { translations } from "@/lib/i18n";
-import { useLocale } from "@/context/LocaleContext";
 
-const Hero = ({ onDisplayed }) => {
+const Hero = ({ onDisplayed, t }) => {
   const [showSecond, setShowSecond] = useState(false);
   const [showSocials, setShowSocials] = useState(false);
-
-  const { locale } = useLocale();
-  const t = translations[locale];
 
   const handleCompleteText = () => {
     setShowSecond(true);

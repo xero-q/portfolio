@@ -1,11 +1,6 @@
 import React from "react";
-import { translations } from "@/lib/i18n";
-import { useLocale } from "@/context/LocaleContext";
 
-const AboutMe = () => {
-  const { locale } = useLocale();
-  const t = translations[locale];
-
+const AboutMe = ({ t }) => {
   return (
     <div className="flex flex-col items-center justify-center lg:items-start w-full fade-in lg:max-w-[650px] border border-gray-600 p-4 rounded-2xl shadow-[0_0_20px_rgba(100,100,100,0.4)] lg:border-none lg:shadow-none lg:p-0">
       <h2 className="text-3xl font-semibold mb-5">{t.aboutme.header}</h2>

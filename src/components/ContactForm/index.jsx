@@ -2,17 +2,13 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-import { translations } from "@/lib/i18n";
-import { useLocale } from "@/context/LocaleContext";
 import emojiRegex from "emoji-regex";
 
 const regexEmoji = emojiRegex();
 const regexLettersSpaces = /^[\p{L} ]+$/u;
 
-export default function ContactForm() {
+export default function ContactForm({ t }) {
   const [status, setStatus] = useState("");
-  const { locale } = useLocale();
-  const t = translations[locale];
 
   const contactSchema = z.object({
     name: z

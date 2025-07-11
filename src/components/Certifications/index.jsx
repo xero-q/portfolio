@@ -1,7 +1,5 @@
 import React from "react";
 import CertificationCard from "@/components/CertificationCard";
-import { translations } from "@/lib/i18n";
-import { useLocale } from "@/context/LocaleContext";
 
 const certifications = [
   {
@@ -96,10 +94,7 @@ const certifications = [
   }
 ];
 
-const Certifications = () => {
-  const { locale } = useLocale();
-  const t = translations[locale];
-
+const Certifications = ({ t }) => {
   return (
     <div className="section-container">
       <h2 className="section-header">{t.certifications.header}</h2>

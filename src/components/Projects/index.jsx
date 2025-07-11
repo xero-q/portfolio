@@ -38,10 +38,7 @@ const projects = [
   }
 ];
 
-const Projects = () => {
-  const { locale } = useLocale();
-  const t = translations[locale];
-
+const Projects = ({ t }) => {
   return (
     <div className="section-container">
       <h2 className="section-header">{t.projects.header}</h2>

@@ -1,10 +1,8 @@
-import { useLocale } from "@/context/LocaleContext";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import { SUPPORTED_LOCALES, DEFAULT_LOCALE } from "@/lib/constants";
 
-const LanguageSwitcher = () => {
-  const { locale } = useLocale();
+const LanguageSwitcher = ({ locale }) => {
   const pathname = usePathname();
   const router = useRouter();
 
