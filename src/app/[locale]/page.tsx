@@ -11,6 +11,7 @@ import Projects from "@/components/Projects";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { useLocale } from "@/context/LocaleContext";
 import { translations } from "@/lib/i18n";
+import React from "react";
 
 export default function Home() {
   const [showBody, setShowBody] = useState(false);

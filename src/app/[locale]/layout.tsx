@@ -5,6 +5,7 @@ import { LocaleProvider } from "@/context/LocaleContext";
 import { SUPPORTED_LOCALES, DEFAULT_LOCALE } from "@/lib/constants";
 import { headers } from "next/headers";
 import { translations } from "@/lib/i18n";
+import React from "react";
 
 export async function generateMetadata({ params }) {
   const { locale } = await params;
@@ -26,9 +27,9 @@ export default async function RootLayout({ children, params }) {
     : DEFAULT_LOCALE;
 
   const headersList = headers();
-  const host = headersList.get("host");
+  const host = (await headersList).get("host");
   const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
-  const pathname = headersList.get("x-next-url") || `/${correctLocale}`;
+  const pathname = (await headersList).get("x-next-url") || `/${correctLocale}`;
 
   const canonicalUrl = `${protocol}://${host}${pathname}`;
 
