@@ -4,12 +4,20 @@ import "@/app/globals.css";
 import { LocaleProvider } from "@/context/LocaleContext";
 import { SUPPORTED_LOCALES, DEFAULT_LOCALE } from "@/lib/constants";
 import { headers } from "next/headers";
+import { translations } from "@/lib/i18n";
 
-export const metadata = {
-  title: "Portfolio - Aníbal Sánchez Numa",
-  description:
-    "Personal website of Aníbal Sánchez Numa. It contains my bio, skills, certifications, courses and projects."
-};
+export async function generateMetadata({ params }) {
+  const { locale } = await params;
+  const correctLocale = SUPPORTED_LOCALES.includes(locale)
+    ? locale
+    : DEFAULT_LOCALE;
+  const t = translations[correctLocale];
+
+  return {
+    title: "Portfolio - Aníbal Sánchez Numa",
+    description: t.meta.description
+  };
+}
 
 export default async function RootLayout({ children, params }) {
   const { locale } = await params;

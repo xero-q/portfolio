@@ -1,4 +1,7 @@
 {
+  "meta":{
+   "description":"Site web personnel d'Aníbal Sánchez Numa. Il présente ma biographie, mes compétences, mes certifications, mes formations et mes projets."
+  },  
   "greeting": "Bonjour, je suis Aníbal Sánchez",
   "title": "Ingénieur Logiciel Senior",
   "aboutme": {
