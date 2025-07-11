@@ -1,7 +1,14 @@
 // components/ImageModal.js
 import React, { useEffect, useRef } from "react";
 
-export default function ImageModal({ isOpen, onClose, imageUrl, alt = "" }) {
+interface ImageModalProps {
+  isOpen:boolean;
+  onClose:()=>void;
+  imageUrl: string;
+  alt?:string;
+}
+
+export default function ImageModal({ isOpen, onClose, imageUrl, alt = "" }:ImageModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
 
   // Close on ESC key
