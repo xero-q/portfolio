@@ -1,10 +1,10 @@
 "use client";
 
 import React, { createContext, Dispatch, ReactNode, SetStateAction, useContext, useState } from "react";
-import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from "@/lib/constants";
+import { DEFAULT_LOCALE, SUPPORTED_LOCALES, UNION_LOCALES } from "@/lib/constants";
 
 interface LocaleContextType {
-  locale: string;
+  locale: UNION_LOCALES;
   setLocale: Dispatch<SetStateAction<string>>;
 }
 
@@ -20,7 +20,7 @@ export const useLocale = (): LocaleContextType => {
 
 interface LocaleProviderProps {
   children: ReactNode;
-  locale: string;
+  locale: UNION_LOCALES;
 }
 
 export const LocaleProvider = ({ children, locale: initialLocale }:LocaleProviderProps) => {

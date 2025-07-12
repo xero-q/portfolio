@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { SUPPORTED_LOCALES, DEFAULT_LOCALE } from "./lib/constants";
+import {
+  SUPPORTED_LOCALES,
+  DEFAULT_LOCALE,
+  UNION_LOCALES
+} from "./lib/constants";
 
 const PUBLIC_FILE = /\.(.*)$/;
 
@@ -21,9 +25,9 @@ export default function middleware(req: NextRequest) {
 
   // Extract first segment of pathname
   const segments = pathname.split("/");
-  const firstSegment = segments[1]; // because split starts with '', e.g. "/ru/something" -> ['', 'ru', 'something']
+  const firstSegment = segments[1].toLowerCase(); // because split starts with '', e.g. "/ru/something" -> ['', 'ru', 'something']
 
-  if (SUPPORTED_LOCALES.includes(firstSegment)) {
+  if (SUPPORTED_LOCALES.includes(firstSegment as UNION_LOCALES)) {
     // Path already starts with supported locale — continue as is
     return NextResponse.next();
   }
@@ -42,7 +46,7 @@ export default function middleware(req: NextRequest) {
   const acceptLang = req.headers.get("accept-language");
   const preferredLang = acceptLang?.split(",")?.[0]?.split("-")?.[0];
 
-  const locale = SUPPORTED_LOCALES.includes(preferredLang || "")
+  const locale = SUPPORTED_LOCALES.includes(preferredLang as UNION_LOCALES)
     ? preferredLang
     : DEFAULT_LOCALE;
 

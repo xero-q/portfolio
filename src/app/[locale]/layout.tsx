@@ -22,8 +22,8 @@ export async function generateMetadata({ params }) {
 
 export default async function RootLayout({ children, params }) {
   const { locale } = await params;
-  const correctLocale = SUPPORTED_LOCALES.includes(locale)
-    ? locale
+  const correctLocale = SUPPORTED_LOCALES.includes(locale.toLowerCase())
+    ? locale.toLowerCase()
     : DEFAULT_LOCALE;
 
   const headersList = headers();

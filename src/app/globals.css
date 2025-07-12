@@ -90,3 +90,7 @@ body {
 .section-body {
   @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto;
 }
+
+.buttonFlag {
+   @apply w-12 h-12 rounded-full flex justify-center items-center shadow-md hover:scale-105 transition-transform cursor-pointer;
+}
