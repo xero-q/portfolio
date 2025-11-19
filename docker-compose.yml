@@ -8,6 +8,9 @@ services:
       - "3000"
     environment:
       - PORT=3000
+      - EMAIL_USER: ${EMAIL_USER}
+      - EMAIL_PASS: ${EMAIL_PASS}
+      - EMAIL_TO: ${EMAIL_TO}
     restart: unless-stopped
     deploy:
       resources:
