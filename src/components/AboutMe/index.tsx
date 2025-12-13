@@ -24,7 +24,7 @@ const AboutMe = ({ t }) => {
         <a
           href="/assets/cv/CV Aníbal Sánchez Numa (EN 2025-11-22).pdf"
           download
-          className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center transition-colors duration-300 cursor-pointer"
+          className="text-center inline-flex text-gray-300 font-semibold fade-in w-fit px-3 py-2 rounded-2xl bg-gradient-to-br from-gray-600 to-blue-900 shadow-[0_0_20px_rgba(100,100,100,0.4)]"          
         >
           <svg
             className="fill-current w-4 h-4 mr-2"
