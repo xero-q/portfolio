@@ -18,5 +18,10 @@
     "name": "C#",
     "src": "/assets/logos/csharp.svg",
     "size": 30
+  },
+  {
+    "name":"Rust",
+    "src":"/assets/logos/rust.svg",
+    "size": 50
   }
 ]
