@@ -12,7 +12,8 @@
       "university": "Université de Ciego de Ávila, Cuba",
       "degree": "Ingénieur en Informatique",
       "master": "Master en Informatique Appliquée"
-    }
+    },
+     "downloadCV":"Télécharger CV"
   },
   "skills": {
     "header": "Compétences",
