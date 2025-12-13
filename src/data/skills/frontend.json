@@ -8,7 +8,11 @@
     "src": "/assets/logos/react.svg"
   },
   {
+    "name":"Vue.js",
+    "src":"/assets/logos/vue.svg"
+  },
+  {
     "name": "Next.js",
     "src": "/assets/logos/next.svg"
-  }
+  }  
 ]
