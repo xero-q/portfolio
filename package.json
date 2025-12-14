@@ -13,7 +13,7 @@
     "@hookform/resolvers": "^5.0.1",
     "@vercel/analytics": "^1.5.0",
     "emoji-regex": "^10.4.0",
-    "next": "^15.3.6",
+    "next": "15.3.8",
     "next-sitemap": "^4.2.3",
     "nodemailer": "^7.0.2",
     "postcss": "^8.5.3",
