@@ -35,7 +35,7 @@
     "projects":{
         "header":"Projects",
         "view":"View Project",
-        "descriptions":["OpsTalent company website","Dspot company website","Lanetalk company tickets platform","Lanetalk company web admin","Lanetalk company live score","Afrimed company website","MakerDAO MIPs Portal","Construex: Building, industry and design marketplace"]
+        "descriptions":["OpsTalent company website","Dspot company website","Lanetalk company tickets platform","Lanetalk company web admin","Lanetalk company live score","Afrimed company website","MakerDAO MIPs Portal","Construex: Building, industry and design marketplace","Mobilive Web Admin"]
     },
     "contact":{
         "header":"Contact me",

@@ -1,4 +1,5 @@
 [
+  
   {
     "link": "https://opstalent.com",
     "imgUrl": "/assets/projects/opstalent.png"
@@ -30,5 +31,9 @@
   {
     "link": "https://www.construex.com.ec/",
     "imgUrl": "/assets/projects/construex.png"
+  },
+  {
+    "link":"https://app.mobilive.ca",
+    "imgUrl":"/assets/projects/mobilive.png"
   }
 ]
