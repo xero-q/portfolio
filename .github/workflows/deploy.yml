@@ -1,4 +1,4 @@
-name: VPS Deployment
+name: VPS Deployment (Check)
 
 on:
     push:
