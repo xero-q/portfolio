@@ -1,4 +1,4 @@
-name: VPS Deployment (Next.js Standalone | PM2 | Nginx)
+name: VPS Deployment (Next.js Standalone)
 
 on:
   push:
@@ -26,19 +26,20 @@ jobs:
 
       - name: Prepare Deployment Folder
         run: |
-          # Create a clean temporary directory for the final package
           mkdir deploy
+          # 1. Copy standalone visible files
+          cp -r .next/standalone/* deploy/
           
-          # 1. Copy standalone files including hidden folders (like .next)
-          # The /. ensures hidden files are included
-          cp -rp .next/standalone/. deploy/
+          # 2. Rename the hidden .next to a visible 'next_assets' folder 
+          # This prevents GitHub Artifacts from skipping it
+          cp -r .next/standalone/.next deploy/next_assets
           
-          # 2. Add static assets into the internal .next folder
-          mkdir -p deploy/.next/static
-          cp -rp .next/static/. deploy/.next/static/
+          # 3. Add static assets into that same folder
+          mkdir -p deploy/next_assets/static
+          cp -r .next/static/* deploy/next_assets/static/
           
-          # 3. Add the public folder
-          cp -rp public deploy/
+          # 4. Add public folder
+          cp -r public deploy/
 
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
@@ -67,13 +68,21 @@ jobs:
           ssh-add ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Sync to VPS
+      - name: Sync and Restore Hidden Folders
         run: |
-          # Ensure target directory exists
+          # 1. Ensure target directory exists
           ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} "mkdir -p ${{ secrets.VPS_TARGET_DIR }}"
           
-          # Sync everything (./ includes hidden files from the artifact)
+          # 2. Sync everything (next_assets is visible, so it will sync perfectly)
           rsync -avz --delete ./ ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_TARGET_DIR }}
+          
+          # 3. Restore the hidden .next folder on the VPS
+          ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} << 'EOF'
+          cd ${{ secrets.VPS_TARGET_DIR }}
+          # Delete any old .next folder and rename next_assets to .next
+          rm -rf .next
+          mv next_assets .next
+          EOF
 
       - name: Restart App on VPS
         run: |
@@ -81,17 +90,13 @@ jobs:
           set -e
           cd ${{ secrets.VPS_TARGET_DIR }}
 
-          # Load NVM environment
           export NVM_DIR="/root/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-          # Create/Update .env file
           echo "EMAIL_USER=${{ secrets.EMAIL_USER }}" > .env
           echo "EMAIL_PASS=${{ secrets.EMAIL_PASS }}" >> .env
           echo "EMAIL_TO=${{ secrets.EMAIL_TO }}" >> .env
 
-          # Restart the process
-          # server.js is now in the root of VPS_TARGET_DIR
           if pm2 list | grep -q "portfolio"; then
             pm2 restart portfolio
           else
