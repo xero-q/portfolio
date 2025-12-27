@@ -54,15 +54,17 @@ jobs:
           ssh-add ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Sync files to VPS
+      - name: Prepare VPS and Sync
         run: |
-          # Create the directory structure on VPS first to avoid rsync error code 11
-          ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} "mkdir -p ${{ secrets.VPS_TARGET_DIR }}/.next/static ${{ secrets.VPS_TARGET_DIR }}/public"
+          # 1. Create the base folder and the .next/static subfolder structure first
+          # We do this in one SSH command to ensure the path exists
+          ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} "mkdir -p ${{ secrets.VPS_TARGET_DIR }}/.next/static"
 
-          # 1. Sync the standalone folder CONTENT (includes server.js, node_modules, and internal .next metadata)
+          # 2. Sync Standalone core (server.js, node_modules, and internal .next files)
+          # Note: The / at the end of .next/standalone/ is CRITICAL
           rsync -avz --delete .next/standalone/ ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_TARGET_DIR }}
           
-          # 2. Sync browser assets into the correct locations
+          # 3. Sync Assets (This is where your error was occurring)
           rsync -avz .next/static/ ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_TARGET_DIR }}/.next/static
           rsync -avz public/ ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_TARGET_DIR }}/public
 
@@ -76,12 +78,12 @@ jobs:
           export NVM_DIR="/root/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-          # Inject Env variables
+          # Environment variables
           echo "EMAIL_USER=${{ secrets.EMAIL_USER }}" > .env
           echo "EMAIL_PASS=${{ secrets.EMAIL_PASS }}" >> .env
           echo "EMAIL_TO=${{ secrets.EMAIL_TO }}" >> .env
 
-          # Start/Restart the process using the standalone entry point
+          # Start or Restart
           if pm2 list | grep -q "portfolio"; then
             pm2 restart portfolio
           else
