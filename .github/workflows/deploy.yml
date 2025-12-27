@@ -56,12 +56,13 @@ jobs:
 
       - name: Sync files to VPS
         run: |
-          # 1. Sync the standalone folder CONTENT. 
-          # This includes: server.js, node_modules, and the internal .next folder
+          # Create the directory structure on VPS first to avoid rsync error code 11
+          ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} "mkdir -p ${{ secrets.VPS_TARGET_DIR }}/.next/static ${{ secrets.VPS_TARGET_DIR }}/public"
+
+          # 1. Sync the standalone folder CONTENT (includes server.js, node_modules, and internal .next metadata)
           rsync -avz --delete .next/standalone/ ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_TARGET_DIR }}
           
-          # 2. Sync browser assets. 
-          # Next.js standalone doesn't include these; they must be in .next/static and /public
+          # 2. Sync browser assets into the correct locations
           rsync -avz .next/static/ ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_TARGET_DIR }}/.next/static
           rsync -avz public/ ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_TARGET_DIR }}/public
 
@@ -71,17 +72,16 @@ jobs:
           set -e
           cd ${{ secrets.VPS_TARGET_DIR }}
 
-          # Load NVM (Ensure Node/PM2 are in path)
+          # Load NVM
           export NVM_DIR="/root/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-          # Update Env variables
+          # Inject Env variables
           echo "EMAIL_USER=${{ secrets.EMAIL_USER }}" > .env
           echo "EMAIL_PASS=${{ secrets.EMAIL_PASS }}" >> .env
           echo "EMAIL_TO=${{ secrets.EMAIL_TO }}" >> .env
 
-          # Restart or Start the process
-          # In standalone mode, we run server.js directly with Node
+          # Start/Restart the process using the standalone entry point
           if pm2 list | grep -q "portfolio"; then
             pm2 restart portfolio
           else
