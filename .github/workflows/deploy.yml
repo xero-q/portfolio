@@ -24,14 +24,24 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Prepare Deployment Folder
+        run: |
+          # Create a clean deployment directory
+          mkdir deploy
+          # Move standalone files (server.js, node_modules, internal .next)
+          cp -r .next/standalone/* deploy/
+          cp -r .next/standalone/.* deploy/ 2>/dev/null || true
+          # Move static assets into the internal .next folder
+          mkdir -p deploy/.next/static
+          cp -r .next/static/* deploy/.next/static/
+          # Move public assets
+          cp -r public deploy/
+
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: build-output
-          path: |
-            .next/standalone
-            .next/static
-            public
+          path: deploy/
 
   deploy:
     needs: build
@@ -54,19 +64,14 @@ jobs:
           ssh-add ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Prepare VPS and Sync
+      - name: Sync to VPS
         run: |
-          # 1. Create the base folder and the .next/static subfolder structure first
-          # We do this in one SSH command to ensure the path exists
-          ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} "mkdir -p ${{ secrets.VPS_TARGET_DIR }}/.next/static"
-
-          # 2. Sync Standalone core (server.js, node_modules, and internal .next files)
-          # Note: The / at the end of .next/standalone/ is CRITICAL
-          rsync -avz --delete .next/standalone/ ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_TARGET_DIR }}
+          # 1. Ensure the target root directory exists
+          ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} "mkdir -p ${{ secrets.VPS_TARGET_DIR }}"
           
-          # 3. Sync Assets (This is where your error was occurring)
-          rsync -avz .next/static/ ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_TARGET_DIR }}/.next/static
-          rsync -avz public/ ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_TARGET_DIR }}/public
+          # 2. Sync everything in one go. 
+          # Using --relative or just syncing the content of the 'deploy' folder.
+          rsync -avz --delete ./ ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_TARGET_DIR }}
 
       - name: Restart App on VPS
         run: |
@@ -74,16 +79,13 @@ jobs:
           set -e
           cd ${{ secrets.VPS_TARGET_DIR }}
 
-          # Load NVM
           export NVM_DIR="/root/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-          # Environment variables
           echo "EMAIL_USER=${{ secrets.EMAIL_USER }}" > .env
           echo "EMAIL_PASS=${{ secrets.EMAIL_PASS }}" >> .env
           echo "EMAIL_TO=${{ secrets.EMAIL_TO }}" >> .env
 
-          # Start or Restart
           if pm2 list | grep -q "portfolio"; then
             pm2 restart portfolio
           else
