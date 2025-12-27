@@ -1,4 +1,4 @@
-name: VPS Deployment (Next.js + PM2)
+name: VPS Deployment (Next.js Standalone)
 
 on:
   push:
@@ -23,7 +23,6 @@ jobs:
 
       - name: Build project
         run: npm run build
-        # This ensures Tailwind and PostCSS are present during build
 
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
@@ -33,7 +32,6 @@ jobs:
             .next/standalone
             .next/static
             public
-            package.json
 
   deploy:
     needs: build
@@ -58,8 +56,14 @@ jobs:
 
       - name: Sync files to VPS
         run: |
-          # Note: We sync the standalone folder contents to the target dir
-          rsync -avz --delete . ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_TARGET_DIR }}
+          # 1. Sync the standalone folder CONTENT. 
+          # This includes: server.js, node_modules, and the internal .next folder
+          rsync -avz --delete .next/standalone/ ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_TARGET_DIR }}
+          
+          # 2. Sync browser assets. 
+          # Next.js standalone doesn't include these; they must be in .next/static and /public
+          rsync -avz .next/static/ ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_TARGET_DIR }}/.next/static
+          rsync -avz public/ ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_TARGET_DIR }}/public
 
       - name: Restart App on VPS
         run: |
@@ -67,27 +71,21 @@ jobs:
           set -e
           cd ${{ secrets.VPS_TARGET_DIR }}
 
-          # Load NVM
+          # Load NVM (Ensure Node/PM2 are in path)
           export NVM_DIR="/root/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-          # Create environment file
+          # Update Env variables
           echo "EMAIL_USER=${{ secrets.EMAIL_USER }}" > .env
           echo "EMAIL_PASS=${{ secrets.EMAIL_PASS }}" >> .env
           echo "EMAIL_TO=${{ secrets.EMAIL_TO }}" >> .env
-          
-          # Move static files into the standalone public folder if needed
-          # (Next.js standalone needs 'static' and 'public' inside the folder)
-          mkdir -p .next/standalone/public
-          cp -r public/* .next/standalone/public/ || true
-          mkdir -p .next/standalone/.next/static
-          cp -r .next/static/* .next/standalone/.next/static/ || true
 
-          # Start/Restart using the standalone server
+          # Restart or Start the process
+          # In standalone mode, we run server.js directly with Node
           if pm2 list | grep -q "portfolio"; then
             pm2 restart portfolio
           else
-            pm2 start .next/standalone/server.js --name portfolio
+            pm2 start server.js --name portfolio
           fi
 
           pm2 save
