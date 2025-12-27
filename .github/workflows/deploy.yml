@@ -1,79 +1,83 @@
-name: VPS Deployment (Check 2)
+name: VPS Deployment (Next.js + PM2)
 
 on:
-    push:
-        branches:
-            - main
+  push:
+    branches:
+      - main
 
 jobs:
-    test:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-            - name: Setup Node.js
-              uses: actions/setup-node@v4
-              with:
-                  node-version: "20"
-                  cache: "npm"
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
 
-            - name: Install dependencies
-              run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-            - name: Lint
-              run: npm run lint
+      - name: Lint
+        run: npm run lint
 
-            - name: Build
-              run: npm run build
+      - name: Build
+        run: npm run build
 
-    deploy:
-        needs: test
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-            - name: Install SSH Key
-              run: |
-                mkdir -p ~/.ssh/
-                echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_rsa
-                chmod 600 ~/.ssh/id_rsa
-                # Decrypt the key if a passphrase is provided
-                if [ -n "${{ secrets.VPS_PASSPHRASE }}" ]; then
-                  ssh-keygen -p -f ~/.ssh/id_rsa -P "${{ secrets.VPS_PASSPHRASE }}" -N ""
-                fi
-                # Add to agent
-                eval $(ssh-agent -s)
-                ssh-add ~/.ssh/id_rsa
-                # Add to known_hosts
-                ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+      - name: Install SSH Key
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          if [ -n "${{ secrets.VPS_PASSPHRASE }}" ]; then
+            ssh-keygen -p -f ~/.ssh/id_rsa -P "${{ secrets.VPS_PASSPHRASE }}" -N ""
+          fi
+          eval $(ssh-agent -s)
+          ssh-add ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
 
-            - name: Deploy with rsync
-              run: |
-                rsync -avz --delete --exclude '.git' --exclude 'node_modules' --exclude '.next' ./ ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_TARGET_DIR }}
+      - name: Deploy to VPS
+        run: |
+          rsync -avz --delete --exclude '.git' --exclude 'node_modules' ./ ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_TARGET_DIR }}
 
-            - name: Install dependencies and Build on VPS
-              run: |
-                ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} << 'EOF'
-                cd ${{ secrets.VPS_TARGET_DIR }}
-                
-                # Source profile to ensure node is in path
-                [ -f ~/.bashrc ] && source ~/.bashrc
-                [ -f ~/.profile ] && source ~/.profile
-                
-                # Create/Update .env file with secrets
-                echo "EMAIL_USER=${{ secrets.EMAIL_USER }}" > .env
-                echo "EMAIL_PASS=${{ secrets.EMAIL_PASS }}" >> .env
-                echo "EMAIL_TO=${{ secrets.EMAIL_TO }}" >> .env
-                
-                npm install --production
-                npm run build
-                
-                # Restart application
-                if command -v pm2 &> /dev/null; then
-                  pm2 restart portfolio || pm2 start npm --name "portfolio" -- start
-                else
-                  echo "pm2 not found. Please ensure your app is running."
-                fi
-                EOF
+      - name: Install, Build, and Restart App on VPS
+        run: |
+          ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} << 'EOF'
+          set -e
+          cd ${{ secrets.VPS_TARGET_DIR }}
+
+          # --- Load NVM (ensure Node & PM2 are available) ---
+          export NVM_DIR="/root/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+          # --- Create / update environment file ---
+          echo "EMAIL_USER=${{ secrets.EMAIL_USER }}" > .env
+          echo "EMAIL_PASS=${{ secrets.EMAIL_PASS }}" >> .env
+          echo "EMAIL_TO=${{ secrets.EMAIL_TO }}" >> .env
+
+          # --- Install dependencies ---
+          npm install --production
+
+          # --- Build Next.js in standalone mode ---
+          npm run build
+
+          # --- Restart / Start PM2 using standalone Node server ---
+          if pm2 list | grep -q "portfolio"; then
+            pm2 restart portfolio
+          else
+            pm2 start .next/standalone/server.js --name portfolio
+          fi
+
+          # --- Save PM2 process list ---
+          pm2 save
+          EOF
