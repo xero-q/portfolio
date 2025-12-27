@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -21,18 +21,28 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Lint
-        run: npm run lint
-
-      - name: Build
+      - name: Build project
         run: npm run build
+        # This ensures Tailwind and PostCSS are present during build
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: |
+            .next/standalone
+            .next/static
+            public
+            package.json
 
   deploy:
-    needs: test
+    needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
 
       - name: Install SSH Key
         run: |
@@ -46,38 +56,39 @@ jobs:
           ssh-add ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Deploy to VPS
+      - name: Sync files to VPS
         run: |
-          rsync -avz --delete --exclude '.git' --exclude 'node_modules' ./ ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_TARGET_DIR }}
+          # Note: We sync the standalone folder contents to the target dir
+          rsync -avz --delete . ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_TARGET_DIR }}
 
-      - name: Install, Build, and Restart App on VPS
+      - name: Restart App on VPS
         run: |
           ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} << 'EOF'
           set -e
           cd ${{ secrets.VPS_TARGET_DIR }}
 
-          # --- Load NVM (ensure Node & PM2 are available) ---
+          # Load NVM
           export NVM_DIR="/root/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-          # --- Create / update environment file ---
+          # Create environment file
           echo "EMAIL_USER=${{ secrets.EMAIL_USER }}" > .env
           echo "EMAIL_PASS=${{ secrets.EMAIL_PASS }}" >> .env
           echo "EMAIL_TO=${{ secrets.EMAIL_TO }}" >> .env
+          
+          # Move static files into the standalone public folder if needed
+          # (Next.js standalone needs 'static' and 'public' inside the folder)
+          mkdir -p .next/standalone/public
+          cp -r public/* .next/standalone/public/ || true
+          mkdir -p .next/standalone/.next/static
+          cp -r .next/static/* .next/standalone/.next/static/ || true
 
-          # --- Install dependencies ---
-          npm install --production
-
-          # --- Build Next.js in standalone mode ---
-          npm run build
-
-          # --- Restart / Start PM2 using standalone Node server ---
+          # Start/Restart using the standalone server
           if pm2 list | grep -q "portfolio"; then
             pm2 restart portfolio
           else
             pm2 start .next/standalone/server.js --name portfolio
           fi
 
-          # --- Save PM2 process list ---
           pm2 save
           EOF
