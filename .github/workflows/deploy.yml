@@ -1,4 +1,4 @@
-name: VPS Deployment (Next.js Standalone)
+name: VPS Deployment (Next.js Standalone | PM2 | Nginx)
 
 on:
   push:
