@@ -27,18 +27,13 @@ jobs:
       - name: Prepare Deployment Folder
         run: |
           mkdir deploy
-          # 1. Copy standalone visible files
+          # Copy standalone files (this includes server.js and node_modules)
           cp -r .next/standalone/* deploy/
+          cp -r .next/standalone/.* deploy/ 2>/dev/null || true
           
-          # 2. Rename the hidden .next to a visible 'next_assets' folder 
-          # This prevents GitHub Artifacts from skipping it
-          cp -r .next/standalone/.next deploy/next_assets
-          
-          # 3. Add static assets into that same folder
-          mkdir -p deploy/next_assets/static
-          cp -r .next/static/* deploy/next_assets/static/
-          
-          # 4. Add public folder
+          # Copy static and public assets (Standard Next.js standalone requirement)
+          mkdir -p deploy/.next/static
+          cp -r .next/static/* deploy/.next/static/
           cp -r public deploy/
 
       - name: Upload Build Artifacts
@@ -46,6 +41,8 @@ jobs:
         with:
           name: build-output
           path: deploy/
+          # Ensure hidden files are not ignored
+          include-hidden-files: true
 
   deploy:
     needs: build
@@ -55,34 +52,16 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-output
+          path: ./dist # Download to a specific subfolder to be safe
 
       - name: Install SSH Key
-        run: |
-          mkdir -p ~/.ssh/
-          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          if [ -n "${{ secrets.VPS_PASSPHRASE }}" ]; then
-            ssh-keygen -p -f ~/.ssh/id_rsa -P "${{ secrets.VPS_PASSPHRASE }}" -N ""
-          fi
-          eval $(ssh-agent -s)
-          ssh-add ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+        # ... (Your existing SSH Key logic is fine)
 
-      - name: Sync and Restore Hidden Folders
+      - name: Sync to VPS
         run: |
-          # 1. Ensure target directory exists
-          ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} "mkdir -p ${{ secrets.VPS_TARGET_DIR }}"
-          
-          # 2. Sync everything (next_assets is visible, so it will sync perfectly)
-          rsync -avz --delete ./ ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_TARGET_DIR }}
-          
-          # 3. Restore the hidden .next folder on the VPS
-          ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} << 'EOF'
-          cd ${{ secrets.VPS_TARGET_DIR }}
-          # Delete any old .next folder and rename next_assets to .next
-          rm -rf .next
-          mv next_assets .next
-          EOF
+          # Use -a (archive) which includes permissions and recurses
+          # Use --include=".*" to ensure hidden folders like .next are sent
+          rsync -avz --include=".*" ./dist/ ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_TARGET_DIR }}
 
       - name: Restart App on VPS
         run: |
@@ -90,13 +69,16 @@ jobs:
           set -e
           cd ${{ secrets.VPS_TARGET_DIR }}
 
-          export NVM_DIR="/root/.nvm"
+          # Load NVM
+          export NVM_DIR="$HOME/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
+          # Create .env
           echo "EMAIL_USER=${{ secrets.EMAIL_USER }}" > .env
           echo "EMAIL_PASS=${{ secrets.EMAIL_PASS }}" >> .env
           echo "EMAIL_TO=${{ secrets.EMAIL_TO }}" >> .env
 
+          # Restart or Start
           if pm2 list | grep -q "portfolio"; then
             pm2 restart portfolio
           else
