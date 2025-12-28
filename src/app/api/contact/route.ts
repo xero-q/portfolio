@@ -10,81 +10,72 @@ const regexEmoji = emojiRegex();
 const contactSchema = z.object({
   name: z
     .string()
-    .min(1, "Name is required")
-    .max(100, "Your name can not exceed 100 characters")
-    .refine((val) => !regexEmoji.test(val), {
-      message: "Emojis are not allowed"
-    })
+    .min(1)
+    .max(100)
+    .refine((val) => !regexEmoji.test(val), { message: "No emojis" })
     .refine((val) => regexLettersSpaces.test(val), {
-      message: "Only letters and spaces are allowed"
+      message: "Only letters and spaces",
     }),
-  email: z
-    .string()
-    .min(1, "Email is required")
-    .max(300, "Your email can not exceed 300 characters")
-    .email("Invalid email address"),
-  subject: z
-    .string()
-    .min(1, "Subject is required")
-    .max(300, "Your subject can not exceed 300 characters"),
-  message: z
-    .string()
-    .min(1, "Message is required")
-    .max(2000, "Your message can not exceed 2000 characters.")
+  email: z.string().email().max(300),
+  subject: z.string().min(1).max(300),
+  message: z.string().min(1).max(2000),
 });
 
-export async function POST(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ message: "Method not allowed" });
-  }
+export async function POST(req: Request) {
+  let body;
 
-  const body = await req.json();
-
-  const result = contactSchema.safeParse(body);
-  if (!result.success) {
+  try {
+    body = await req.json();
+  } catch {
     return NextResponse.json(
-      { errors: result.error.flatten() },
+      { error: "Invalid or empty JSON body" },
       { status: 400 }
     );
   }
 
-  const validatedData = result.data;
+  const parsed = contactSchema.safeParse(body);
+  if (!parsed.success) {
+    return NextResponse.json(
+      { errors: parsed.error.flatten() },
+      { status: 400 }
+    );
+  }
 
-  const { name, email, subject, message } = validatedData;
+  const { name, email, subject, message } = parsed.data;
 
-  const sanitizedName = escapeHTML(name),
-    sanitizedEmail = escapeHTML(email),
-    sanitizeSubject = escapeHTML(subject),
-    sanitizedMessage = escapeHTML(message);
+  const sanitizedName = escapeHTML(name);
+  const sanitizedEmail = escapeHTML(email);
+  const sanitizedSubject = escapeHTML(subject);
+  const sanitizedMessage = escapeHTML(message);
 
+  // ⚠️ Transporter fuera del try para no recrearlo siempre
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
       user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
-    }
+      pass: process.env.EMAIL_PASS,
+    },
   });
 
-  try {
-    await transporter.sendMail({
-      from: email,
+  // 🚀 RESPONDE RÁPIDO
+  NextResponse.json({ ok: true });
+
+  // 🔥 background job
+  transporter
+    .sendMail({
+      from: process.env.EMAIL_USER,
       to: process.env.EMAIL_TO,
       subject: `New message from ${sanitizedName}`,
-      text: message,
-      html: `<p><strong>Name:</strong> ${sanitizedName}</p>
-             <p><strong>Email:</strong> ${sanitizedEmail}</p>
-             <p><strong>Subject:</strong> ${sanitizeSubject}</p>
-             <p><strong>Message:</strong> ${sanitizedMessage}</p>`
+      html: `
+        <p><strong>Name:</strong> ${sanitizedName}</p>
+        <p><strong>Email:</strong> ${sanitizedEmail}</p>
+        <p><strong>Subject:</strong> ${sanitizedSubject}</p>
+        <p><strong>Message:</strong> ${sanitizedMessage}</p>
+      `,
+    })
+    .catch((err) => {
+      console.error("MAIL ERROR:", err);
     });
 
-    return NextResponse.json(
-      { message: "Email sent successfully" },
-      { status: 200 }
-    );
-  } catch (error) {
-    return NextResponse.json(
-      { message: "Error sending email" },
-      { status: 500 }
-    );
-  }
+  return NextResponse.json({ message: "Message queued" });
 }
