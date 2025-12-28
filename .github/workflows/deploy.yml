@@ -3,7 +3,7 @@ name: VPS Deployment (Next.js Standalone)
 on:
   push:
     branches:
-      - main
+      - staging
 
 jobs:
   build:
