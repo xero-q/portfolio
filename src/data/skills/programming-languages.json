@@ -23,5 +23,10 @@
     "name":"Rust",
     "src":"/assets/logos/rust.svg",
     "size": 50
-  }
+  },
+  {
+    "name":"Bash",
+    "src":"/assets/logos/bash.svg",
+    "size": 50
+  }  
 ]
