@@ -27,13 +27,14 @@ jobs:
       - name: Prepare Deployment Folder
         run: |
           mkdir deploy
-          # Copy standalone files (this includes server.js and node_modules)
+          # 1. Copy the standalone build files (includes server.js and node_modules)
           cp -r .next/standalone/* deploy/
-          cp -r .next/standalone/.* deploy/ 2>/dev/null || true
           
-          # Copy static and public assets (Standard Next.js standalone requirement)
+          # 2. Recreate the required .next/static structure inside the standalone folder
           mkdir -p deploy/.next/static
           cp -r .next/static/* deploy/.next/static/
+          
+          # 3. Copy public folder for images/assets
           cp -r public deploy/
 
       - name: Upload Build Artifacts
@@ -41,7 +42,7 @@ jobs:
         with:
           name: build-output
           path: deploy/
-          # Ensure hidden files are not ignored
+          # CRITICAL: This ensures hidden folders like .next are included
           include-hidden-files: true
 
   deploy:
@@ -52,16 +53,29 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: build-output
-          path: ./dist # Download to a specific subfolder to be safe
+          path: ./dist
 
       - name: Install SSH Key
-        # ... (Your existing SSH Key logic is fine)
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          if [ -n "${{ secrets.VPS_PASSPHRASE }}" ]; then
+            ssh-keygen -p -f ~/.ssh/id_rsa -P "${{ secrets.VPS_PASSPHRASE }}" -N ""
+          fi
+          eval $(ssh-agent -s)
+          ssh-add ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
 
       - name: Sync to VPS
         run: |
-          # Use -a (archive) which includes permissions and recurses
-          # Use --include=".*" to ensure hidden folders like .next are sent
-          rsync -avz --include=".*" ./dist/ ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_TARGET_DIR }}
+          # Ensure target directory exists
+          ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} "mkdir -p ${{ secrets.VPS_TARGET_DIR }}"
+          
+          # Sync the contents of ./dist to the target. 
+          # The -a flag handles recursion and permissions. 
+          # The -v flag provides visibility during the process.
+          rsync -avz --delete ./dist/ ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_TARGET_DIR }}
 
       - name: Restart App on VPS
         run: |
@@ -69,19 +83,21 @@ jobs:
           set -e
           cd ${{ secrets.VPS_TARGET_DIR }}
 
-          # Load NVM
+          # Load NVM (adjust path if your VPS uses a different location for NVM)
           export NVM_DIR="$HOME/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-          # Create .env
+          # Create/Update .env file
           echo "EMAIL_USER=${{ secrets.EMAIL_USER }}" > .env
           echo "EMAIL_PASS=${{ secrets.EMAIL_PASS }}" >> .env
           echo "EMAIL_TO=${{ secrets.EMAIL_TO }}" >> .env
 
-          # Restart or Start
+          # Manage PM2 Process
           if pm2 list | grep -q "portfolio"; then
+            echo "Restarting existing process..."
             pm2 restart portfolio
           else
+            echo "Starting new process..."
             pm2 start server.js --name portfolio
           fi
           pm2 save
