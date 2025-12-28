@@ -27,22 +27,21 @@ jobs:
       - name: Prepare Deployment Folder
         run: |
           mkdir deploy
-          # 1. Copy the standalone build files (includes server.js and node_modules)
-          cp -r .next/standalone/* deploy/
           
-          # 2. Recreate the required .next/static structure inside the standalone folder
+          # 1. Copy everything from standalone (including hidden .next folder)
+          # Using cp -a to preserve hidden files and directory structure
+          cp -a .next/standalone/. deploy/
+          
+          # 2. Add static and public assets (Required for Standalone mode)
           mkdir -p deploy/.next/static
-          cp -r .next/static/* deploy/.next/static/
-          
-          # 3. Copy public folder for images/assets
-          cp -r public deploy/
+          cp -r .next/static/. deploy/.next/static/
+          cp -r public/. deploy/public/
 
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: build-output
           path: deploy/
-          # CRITICAL: This ensures hidden folders like .next are included
           include-hidden-files: true
 
   deploy:
@@ -69,12 +68,8 @@ jobs:
 
       - name: Sync to VPS
         run: |
-          # Ensure target directory exists
           ssh ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }} "mkdir -p ${{ secrets.VPS_TARGET_DIR }}"
-          
-          # Sync the contents of ./dist to the target. 
-          # The -a flag handles recursion and permissions. 
-          # The -v flag provides visibility during the process.
+          # Syncing with -a sends all hidden files (including .next)
           rsync -avz --delete ./dist/ ${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_TARGET_DIR }}
 
       - name: Restart App on VPS
@@ -83,21 +78,21 @@ jobs:
           set -e
           cd ${{ secrets.VPS_TARGET_DIR }}
 
-          # Load NVM (adjust path if your VPS uses a different location for NVM)
+          # Load NVM
           export NVM_DIR="$HOME/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-          # Create/Update .env file
+          # Environment variables
           echo "EMAIL_USER=${{ secrets.EMAIL_USER }}" > .env
           echo "EMAIL_PASS=${{ secrets.EMAIL_PASS }}" >> .env
           echo "EMAIL_TO=${{ secrets.EMAIL_TO }}" >> .env
+          echo "NODE_ENV=production" >> .env
+          echo "PORT=3000" >> .env
 
-          # Manage PM2 Process
+          # Restart PM2
           if pm2 list | grep -q "portfolio"; then
-            echo "Restarting existing process..."
             pm2 restart portfolio
           else
-            echo "Starting new process..."
             pm2 start server.js --name portfolio
           fi
           pm2 save
