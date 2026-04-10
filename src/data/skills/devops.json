@@ -7,5 +7,10 @@
     "name": "Google Cloud",
     "src": "/assets/logos/gcp.svg",
     "size": 90
+  },
+  {
+    "name": "Azure",
+    "src": "/assets/logos/azure.png",
+    "size": 90
   }
 ]
