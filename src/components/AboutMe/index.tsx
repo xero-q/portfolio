@@ -22,7 +22,7 @@ const AboutMe = ({ t }) => {
       </div>
       <div className="mt-5 w-full flex justify-center lg:justify-start">
         <a
-          href="/assets/cv/CV Aníbal Sánchez Numa (EN 2026-04-19).pdf"
+          href="/assets/cv/CV Anibal Sanchez Numa (2026-04-20).pdf"
           download
           className="text-center inline-flex items-center text-gray-300 font-semibold fade-in w-fit px-3 py-2 rounded-2xl bg-gradient-to-br from-gray-600 to-blue-900 shadow-[0_0_20px_rgba(100,100,100,0.4)]"
         >
