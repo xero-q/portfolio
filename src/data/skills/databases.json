@@ -9,10 +9,19 @@
     "size": 90
   },
   {
+    "name": "SQL Server",
+    "src": "/assets/logos/sqlserver.svg"
+  },
+  {
+    "name": "Oracle",
+    "src": "/assets/logos/oracle.svg",
+    "size": 90
+  },
+  {
     "name": "SQLite",
     "src": "/assets/logos/sqlite.svg",
     "size": 90
-  },
+  },  
   {
     "name": "MongoDB",
     "src": "/assets/logos/mongodb.svg",
@@ -24,7 +33,8 @@
     "size": 90
   },
   {
-    "name": "SQL Server",
-    "src": "/assets/logos/sqlserver.svg"
-  }
+    "name": "Firestore",
+    "src": "/assets/logos/firestore.svg",
+    "size": 90
+  }  
 ]
