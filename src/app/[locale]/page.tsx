@@ -30,8 +30,8 @@ export default function Home() {
                 <AboutMe t={t} />
                 <Skills t={t} />
               </div>
-              <Certifications t={t} />
               <Projects t={t} />
+              <Certifications t={t} />              
               <ContactForm t={t} />
               <div className="h-[40px]"></div>
             </>

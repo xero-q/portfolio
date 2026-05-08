@@ -35,7 +35,7 @@
     "projects":{
         "header":"Projects",
         "view":"View Project",
-        "descriptions":["OpsTalent company website","Dspot company website","Lanetalk company tickets platform","Lanetalk company web admin","Lanetalk company live score","Afrimed company website","MakerDAO MIPs Portal","Construex: Building, industry and design marketplace","Mobilive Web Admin"]
+        "descriptions":["OpsTalent company website","Dspot company website","Lanetalk company tickets platform","Lanetalk company web admin","Lanetalk company live score","Afrimed company website","MakerDAO MIPs Portal","Construex: Building, industry and design marketplace","EzPraxis Healthcare SaaS platform","Mobilive Web Admin","Multi-tenant SaaS EHS platform for safety meeting management"]
     },
     "contact":{
         "header":"Contact me",

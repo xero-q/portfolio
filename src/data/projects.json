@@ -33,7 +33,15 @@
     "imgUrl": "/assets/projects/construex.png"
   },
   {
+    "link": "https://app.ezpraxis.com/",
+    "imgUrl": "/assets/projects/ezpraxis.png"
+  },
+  {
     "link":"https://app.mobilive.ca",
     "imgUrl":"/assets/projects/mobilive.png"
+  },
+  {
+    "link":"https://app.legionsafe.com",
+    "imgUrl":"/assets/projects/legion.png"
   }
 ]
