@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import ImageModal from "@/components/ImageModal";
-import { translations } from "@/lib/i18n";
-import { useLocale } from "@/context/LocaleContext";
 import styles from "./certification-card.module.css";
 
 interface CertificationCardProps {
@@ -44,7 +42,8 @@ const CertificationCard = ({
         <p className="text-gray-800 text-xs mb-4">
           {t.certifications.issued}: {issueDate}
         </p>
-        <a
+        {
+          link ? <a
           href={link}
           target="_blank"
           className="text-blue-400 font-semibold hover:underline text-sm"
@@ -53,7 +52,9 @@ const CertificationCard = ({
           }}
         >
           {t.certifications.view} →
-        </a>
+        </a>:""
+        }
+        
       </div>
       <ImageModal
         isOpen={isModalOpen}
